@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>Javascript Validation - Using All Functions</title>
+<script language=javascript type=text/javascript src=myjs.js></script>
+<script>
+function validate()
+{
+var empid=document.getElementById("empid");
+var empname=document.getElementById("empname");
+var emppass=document.getElementById("emppass");
+var empcpass=document.getElementById("empcpass");
+var empadd=document.getElementById("empadd");
+var empcity=document.getElementById("empcity");
+var emppin=document.getElementById("emppin");
+var empage=document.getElementById("empage");
+var empphone=document.getElementById("empphone");
+var empemail=document.getElementById("empemail");
+if(notEmpty(empid,"Employee ID Should Not Blank"))
+{
+if(onlyAlpha(empname,"Employee Name Only Contain Alphabets"))
+{
+if(rangeValid(emppass,6,9,"Password Between 6 to 9 Charcters"))
+{
+if(compValid(emppass,empcpass,"Password and Conf Password Should Same"))
+{
+if(addrValid(empadd,"Invalid Charcter in Employee Address"))
+{
+if(mustSelect(empcity,"Please Select One City"))
+{
+if(onlyDigits(emppin,"Employee Pin Only Contain Digits"))
+{
+if(rangeValidN(empage,18,62,"Employee Age Between 18 to 62"))
+{
+if(onlyDigits(empphone,"Employee Phone Only Digits"))
+{
+if(emailValid(empemail,"Invalid Employee Email"))
+{
+return true;
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+return false;
+}
+
+</script>
+</head>
+<body>
+<form onsubmit="return validate()">
+<table align=center border=1>
+<tr>
+<th colspan=2>Employee Information</th>
+</tr>
+<tr>
+<td>Employee ID</td>
+<td><input type=text id=empid></td>
+</tr>
+<tr>
+<td>Employee Name</td>
+<td><input type=text id=empname></td>
+</tr>
+<tr>
+<td>Employee Pass</td>
+<td><input type=password id=emppass></td>
+</tr>
+<tr>
+<td>Employee Confirm Pass</td>
+<td><input type=password id=empcpass></td>
+</tr>
+<tr>
+<td>Employee Address</td>
+<td><textarea id=empadd></textarea></td>
+</tr>
+<tr>
+<td>Employee City</td>
+<td><select id=empcity>
+<option value="Select One">Select One</option>
+<option value="Bhubaneswar">Bhubaneswar</option>
+<option value="Patna">Patna</option>
+<option value="Ranchi">Ranchi</option>
+<option value="Kolkata">Kolkata</option>
+<option value="Delhi">Delhi</option>
+<option value="Bhopal">Bhopal</option>
+</select></td>
+</tr>
+<tr>
+<td>Employee Pincode</td>
+<td><input type=text id=emppin maxlength=6></td>
+</tr>
+<tr>
+<td>Employee Age</td>
+<td><input type=text id=empage></td>
+</tr>
+<tr>
+<td>Employee Phone</td>
+<td><input type=text id=empphone></td>
+</tr>
+<tr>
+<td>Employee Email</td>
+<td><input type=text id=empemail></td>
+</tr>
+<tr>
+<td></td>
+<td><input type=submit value=Submit></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

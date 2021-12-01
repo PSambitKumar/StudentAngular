@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Required Field Validation in Javascript</title>
+<script>
+function notEmpty(elem,msg)
+{
+if(elem.value.length==0)
+{
+alert(msg);
+elem.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+Enter Your Name : <input type=text id=t1>
+
+<input type=button value=Check onclick="return notEmpty(document.getElementById('t1'),'Please Enter Your Name')">
+</body>
+</html>

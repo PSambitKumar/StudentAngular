@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Only Digits Validation in Javascript</title>
+<script>
+function onlyDigits(elem,msg)
+{
+var exp=/^[0-9]+$/;
+if(!(elem.value.match(exp)))
+{
+alert(msg);
+elem.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+Enter Your Pincode : <input type=text id=t1><br>
+<input type=button value=Check onclick="return onlyDigits(document.getElementById('t1'),'Pincode Only Contain Digits')">
+</body>
+</html>

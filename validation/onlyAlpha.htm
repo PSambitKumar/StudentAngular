@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Only Alpha Validation in Javascript</title>
+<script>
+function onlyAlpha(elem,msg)
+{
+var exp=/^[ a-zA-Z]+$/;
+if(!(elem.value.match(exp)))
+{
+alert(msg);
+elem.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+Enter Your Name : <input type=text id=t1><br>
+<input type=button value=Check onclick="return onlyAlpha(document.getElementById('t1'),'Name Only Contain Alphabets')">
+</body>
+</html>

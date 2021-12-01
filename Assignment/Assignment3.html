@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fun(ele){
+            ele.style.backgroundColor="yellow";
+        }
+        function fun1(ele){
+            ele.style.backgroundColor="white";
+        }
+    </script>
+</head>
+<body>
+
+
+<!-- Question 1 -->
+enter your name: <input type=text id=t1 onkeyup="return fun()"><br><br>
+<label id="t"> </label>
+<script>
+    function fun(){
+        var cnum=50;
+        
+        document.getElementById("t").innerText="the charcater are left are"+(cnum-document.getElementById("t1").value.length);
+    }
+document.write("<br>");
+</script>
+
+<!-- Question 2 -->
+enter a city:<select id=c1 onchange="return b1()">
+    <option value="select one">--select one--</option>
+    <option value="Jajpur Town">Jajpur Town</option>
+    <option value="Bhubaneswar">Bhubaneswar</option>
+    <option value="Kendrapada">Kendrapada</option>
+    </select> <br><br>
+    <label id="msg"></label>
+    <script>
+        function b1(){
+            document.getElementById("msg").innerText=document.getElementById("c1").value;
+        }
+document.write("<br>");
+
+    </script>
+
+    <!-- Question 3 -->
+    enter your Name:<input type=text id=t1 onfocus="return fun(document.getElementById('t1'))" onblur="return fun1(document.getElementById('t1'))"><br><br>
+    enter your Age:<input type=text id=t2 onfocus="return fun(document.getElementById('t2'))" onblur="return fun1(document.getElementById('t2'))"><br><br>
+    enter your Desgination:<input type=text id=t3 onfocus="return fun(document.getElementById('t3'))" onblur="return fun1(document.getElementById('t3'))"><br><br>
+    enter your Department:<input type=text id=t4 onfocus="return fun(document.getElementById('t4'))" onblur="return fun1(document.getElementById('t4'))"><br><br>
+</body>
+</html>

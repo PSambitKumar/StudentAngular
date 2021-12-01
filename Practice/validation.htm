@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function valid(){
+            var empid=document.getElementById("empid");
+            var empname=document.getElementById("empname");
+            var emppass=document.getElementById("emppass");
+            var empcpass=document.getElementById("empcpass");
+            var empadd=document.getElementById("empadd");
+            var empcity=document.getElementById("empcity");
+            var emppin=document.getElementById("emppin");
+            var empage=document.getElementById("empage");
+            var empphn=document.getElementById("empphn");
+            var empemail=document.getElementById("empemail");
+
+            if(notEmpty(empid,"Employee ID must not be empty.")){
+                return true;
+            }
+            return false;
+        }
+
+        
+function notEmpty(elem,msg){
+    if(elem.value.length==0){
+        alert(msg);
+        elem.focus();
+        return false;
+    }
+return true;
+}
+
+function addrValid(elem,msg){
+    var exp=/^[ a-zA-Z0-9\,\:\-]+$/;
+    if(!(elem.value.match(exp))){
+        alert(msg);
+        elem.focus();
+        return false;
+    }
+return true;
+}
+
+function compValid(elem1,elem2,msg){
+    if(elem1.value!=elem2.value){
+        alert(msg);
+        elem2.focus();
+        return false;
+    }
+return true;
+}
+
+
+function emailValid(elem,msg){
+    var exp=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(!(elem.value.match(exp))){
+        alert(msg);
+        elem.focus();
+        return false;
+    }
+return true;
+}
+
+
+function mustSelect(elem,msg){
+    if(elem.value=="Select One"){
+        alert(msg);
+        elem.focus();
+        return false;
+    }
+return true;
+}
+
+function onlyAlpha(elem,msg){
+    var exp=/^[ a-zA-Z]+$/;
+    if(!(elem.value.match(exp))){
+        alert(msg);
+        elem.focus();
+        return false;
+    }
+return true;
+}
+
+function onlyDigits(elem,msg){
+    var exp=/^[0-9]+$/;
+    if(!(elem.value.match(exp))){
+        alert(msg);
+        elem.focus();
+        return false;
+    }
+return true;
+}
+
+function rangeValid(elem,min,max,msg){
+    if(!(elem.value.length>=min && elem.value.length<=max)){
+        alert(msg);
+        elem.focus();
+        return false;
+    }
+return true;
+}
+
+function rangeValidN(elem,min,max,msg){
+    if(!(parseInt(elem.value)>=min && parseInt(elem.value)<=max)){
+        alert(msg);
+        elem.focus();
+        return false;
+    }
+return true;
+}
+</script>
+</head>
+<body>
+    <form onsubmit="valid()" ></form>
+    <table border="2" cellspacing="0" align="center">
+        <tr>
+            <th colspan="2">Employee Information</th>
+        </tr>
+
+        <tr>
+            <td>Employee ID:</td>
+            <td><input type="text" id="empid"></td>
+        </tr>
+
+        <tr>
+            <td>Employee Name:</td>
+            <td><input type="text" id="empname"></td>
+        </tr>
+
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" id="emppass"></td>
+        </tr>
+        <tr>
+            <td>Confirm Password:</td>
+            <td><input type="password" id="empcpass"></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><textarea cols="21" id="empadd" rows="5"></textarea></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td><select name="city" id="empcity"><option>Select One</option><option>Cuttack</option><option>Puri</option><option>Bhubaneswar</option><option>Kendrapara</option></select></td>
+        </tr>
+        <tr>
+            <td>Pincode:</td>
+            <td><input type="number" maxlength="6" id="emppin"></td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td><input type="number" maxlength="3" id="empage"></td>
+        </tr>
+        <tr>
+            <td>Phone Number:</td>
+            <td><input type="number" maxlength="10" minlength="10" id="empphn"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" id="empemail"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><center><input type="submit" value="Submit"></center></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

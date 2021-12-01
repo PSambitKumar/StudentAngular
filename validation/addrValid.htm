@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Address Validation in Javascript</title>
+<script>
+function addrValid(elem,msg)
+{
+var exp=/^[ a-zA-Z0-9\,\:\-]+$/;
+if(!(elem.value.match(exp)))
+{
+alert(msg);
+elem.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+Enter Your Address : <input type=text id=t1><br>
+<input type=button value=Check onclick="return addrValid(document.getElementById('t1'),'Invalid Charcter in Address')">
+</body>
+</html>

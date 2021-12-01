@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+</head>
+<body>
+    <h6>Q1</h6>
+    <script>
+        function check(){
+            var a=parseInt(document.getElementById("t1").value);
+            var b=parseInt(document.getElementById("t2").value);
+
+            if(a>b){
+                var sub=a-b;
+                document.getElementById("t3").value=sub;
+            }
+            else if(a=b){
+                document.getElementById("t3").value="Nubers are same";
+            }
+            else{
+                var add=a+b;
+                document.getElementById("t3").value=sub;
+            }
+        }
+    </script>
+    Enter first number:<input type="text" id="t1"><br>
+    Enter second number:<input type="text" id="t2"><br>
+    <input type="button" value="Check Here" onclick="return check()"><br>
+    Result is:<input type="text" id="t3"><br><br>
+
+    <!-- Question 2---------------------------------------------------------------------------------------------------------------------------- -->
+
+    <h6>Q2</h6>
+    <script>
+        function check1(){
+            var c=parseInt(document.getElementById("t4").value);
+
+            if(c%2==0){
+                if(c%5==0){
+                    document.getElementById("t5").value="Valid";
+                }
+                else{
+                    document.getElementById("t5").value="Even";
+                }
+            }
+            else{
+                document.getElementById("t5").value="Odd";
+            }
+        }
+    </script>
+    Enter number:<input type="text" id="t4"><br>
+    <input type="button" value="Check Here" onclick="return check1()"><br>
+    Result is:<input type="text" id="t5">
+
+    <!--Question 3 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <h6>Q3</h6>
+    <script>
+        function check2(){
+            var d=parseInt(document.getElementById("t6").value);
+            var e=parseInt(document.getElementById("t7").value);
+            var f=parseInt(document.getElementById("t8").value);
+            var avg=(d+e+f)/3;
+            if(avg>0 && avg<50){
+                document.getElementById("t9").value="Grade F";
+            }
+            else if(avg>=51 && avg<=70){
+                document.getElementById("t9").value="Grade E";
+            }
+            else if(avg>=71 && avg<=90){
+                document.getElementById("t9").value="Grade A";
+            }
+            else if(avg>=91 && avg<=100){
+                document.getElementById("t9").value="Grade 0";
+            }
+            else{
+                document.getElementById("t9").value="Invalid";
+            }
+        }
+    </script>
+    Enter first number:<input type="text" id="t6"><br>
+    Enter second number:<input type="text" id="t7"><br>
+    Enter third number:<input type="text" id="t8"><br>
+    <input type="button" value="Check Here" onclick="return check2()"><br>
+    Result is:<input type="text" id="t9"><br><br>
+
+    <!--Question 4 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <h6>Q4</h6>
+    <script>
+        function check3(){
+            var g=parseInt(document.getElementById("t10").value);
+
+            if(g>0 && g<50){
+                var amnt=g*2.50;
+                document.getElementById("t11").value=amnt;
+            }
+            else if(g>=51 && g<=200){
+                var amnt=g*3.50;
+                document.getElementById("t11").value=amnt;
+            }
+            else if(g>=201 && g<=500){
+                var amnt=g*4.50;
+                document.getElementById("t11").value=amnt;
+            }
+            else if(g>500){
+                var amnt=g*5.50;
+                document.getElementById("t11").value=amnt;
+            }
+            else{
+                document.getElementById("t11").value=amnt;
+            } 
+        }
+    </script>
+    Enter your electicity units:<input type="text" id="t10"><br>
+    <input type="button" value="Check Here" onclick="return check3()"><br>
+    Result is:<input type="text" id="t11">
+
+    <!--Question 5 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <h6>Q5</h6>
+    <script>
+        function check4(){
+            var h=parseInt(document.getElementById("t12").value);
+
+            switch(true){
+
+                case (h<30):
+                document.getElementById("t13").value="Fail";
+                break;
+
+                case (h>=30 && h<=50):
+                document.getElementById("t13").value="Good";
+                break;
+
+                case (h>=51 && h<=70):
+                document.getElementById("t13").value="Better";
+                break;
+
+                case (h>=71 && h<=90):
+                document.getElementById("t13").value="Best";
+                break;
+
+                case (h>=91 && h<=100):
+                document.getElementById("t13").value="Excellent";
+                break;
+
+                default:
+                document.getElementById("t13").value="Invalid";
+
+            }
+        }
+    </script>
+
+    Enter your number:<input type="text" id="t12"><br>
+    <input type="button" value="Check Here" onclick="return check4()"><br>
+    Result is:<input type="text" id="t13"><br><br>
+
+<!--Question 6 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q6</h6>
+    <script>
+        function check6(){
+        var i=parseInt(document.getElementById("t14").value);
+        var j=parseInt(document.getElementById("t15").value);
+        var k=document.getElementById("t16").value;
+
+        switch(true){
+
+                case (k=='+'):
+                    var sum1=i+j;
+                    document.getElementById("t17").value="Addition is: "+sum1;
+                    break;
+
+                case (k=='-'):
+                    var sub=i-j;
+                    document.getElementById("t17").value="Substraction is: "+sub;
+                    break;
+
+                case (k=='*'):
+                    var mul=i*j;
+                    document.getElementById("t17").value="Multiplication is "+mul;
+                    break;
+                
+                case (k=='/'):
+                    var div=i/j;
+                    document.getElementById("t17").value="Division is "+div;
+                    break;
+
+                case (k=='%'):
+                    var mod=i%j;
+                    document.getElementById("t17").value="Modulus is "+mod;
+                    break;
+                default:
+                    document.getElementById("t17").value="Invalid Operrator";
+            }
+        }
+    </script>
+
+    Enter first number:<input type="text" id="t14"><br>
+    Enter second number:<input type="text" id="t15"><br>
+    Enter arithmatic operator:<input type="text" id="t16"><br>
+    <input type="button" value="Check Here" onclick="return check6()"><br>
+    Result is:<input type="text" id="t17">
+
+<!--Question 7 --------------------------------------------------------------------------------------------------------------------------------- -->
+<h6>Q7. Print fibonacci series upto 100.</h6>
+<script>
+    function fib(){
+        var l=0, m=1, temp;
+        document.write(l+" "+m+" ");
+        //document.getElementById("t91").value=l+" "+m+" ";
+        while(m<89){
+            var sum=l+m;
+            document.writeln(sum);
+            //document.getElementById("t91").value=sum;
+            console.log(sum);
+            l=m;
+            m=sum;
+        }
+    }
+</script>
+<input type="button" value="Click Here" onclick="return fib()">
+<!-- Result is:<input type="text" id="t91"> -->
+
+</body>
+</html>
+
+<!--Question 8 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q8 Series 2</h6>
+    <script>
+        function series2(){
+            for(var n=1; n<11; n++){
+             document.writeln((n*n)-n);
+            }
+         }
+    </script>
+<input type="button" value="Click Here" onclick="return series2()">
+
+<!--Question 9 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q9 Series 3</h6>
+    <script>
+        function series3(){
+            var o=0, p;
+            for(p=0; p<100; p++){
+                document.writeln(o);
+                if(p%2==0){
+                    o=o+1;
+                }
+                else{
+                    o=o+2;
+                }
+                
+                if(o>=100){
+                    break;
+                }
+            }
+        }
+    </script>
+<input type="button" value="Click Here" onclick="return series3()">
+
+<!--Question 10 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q10 Series 4</h6>
+    <script>
+        function series4(){
+            var q=0, r;
+            for(r=1; r<100; r++){
+                document.writeln(q);
+                q+=r;
+                if(q>=100){
+                    break;
+                }
+            }
+
+        }
+    </script>
+<input type="button" value="Click Here" onclick="return series4()">
+
+<!--Question 11 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q11</h6>
+<script>
+    function digitCount(){
+    var dgt=parseInt(document.getElementById("txt1").value);
+
+    var count=0;
+    while(dgt!=0){
+        dgt=Math.floor(dgt/10);
+        //console.log(dgt);
+        ++count;
+    }
+    document.getElementById("txt2").value=count;
+}
+</script>
+
+Enter a number:<input type="text" id="txt1"><br>
+<input type="button" value="check" onclick="return digitCount()"><br>
+Number of digits are:<input type="text" id="txt2">
+
+<!--Question 12 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q12</h6>
+<script>
+    function evenodd(){
+        var num3=parseInt(document.getElementById("t20").value);
+        var ecount=0, ocount=0, rem;
+        while(num3!=0){
+            rem=Math.floor(num3 % 10);
+
+            if(rem % 2 == 0){
+                ++ecount;
+            }
+            else{
+                ++ocount;
+            }
+            num3=Math.floor(num3/10);
+        }
+        document.writeln("Even count is: "+ecount+ "<br>" + "Odd count is: "+ocount);
+        //document.write("<br>");
+        //document.writeln("Odd count is: "+ocount);
+    }
+</script>
+
+Enter a number:<input type="text" id="t20">
+<input type="button" value="click here" onclick="return evenodd()">
+
+<!--Question 13 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q13</h6>
+<script>
+    function sumdigit(){
+        var num4=parseInt(document.getElementById("t21").value);
+        var sum1=0;
+        while(num4>0){
+            var rem=(num4 % 10);
+            sum1+=rem;
+            num4=Math.floor(num4/10);
+            
+        }
+        document.writeln("Sum of the digits are: "+ sum1);
+    }
+</script>
+
+Enter a number:<input type="text" id="t21">
+<input type="button" value="click here" onclick="return sumdigit()">
+
+<!--Question 14 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q14</h6>
+<script>
+    function sumoddeven(){
+        var num5=parseInt(document.getElementById("t22").value);
+        var sum1=0, sum2=0, rem2;
+        while(num5>0){
+            rem2=Math.floor(num5 % 10);
+
+            if(rem2 % 2 == 0){
+                sum1+=rem2;
+            }
+            else{
+                sum2+=rem2;
+                ;
+            }
+            num5=Math.floor(num5/10);
+        }
+        document.writeln("Sum of Even digits are: "+sum1+ "<br>" + "Sum of odd digits are: "+sum2);
+    }
+</script>
+
+Enter a number:<input type="text" id="t22">
+<input type="button" value="click here" onclick="return sumoddeven()">
+
+<!--Question 15 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q15</h6>
+<script>
+    function findfactorial(){
+        var num6=parseInt(document.getElementById("t23").value);
+        var u, factorial1=1;
+        for(u=1; u<=num6; u++){
+            factorial1=factorial1*u;
+        }
+        document.writeln("Factorial is: "+factorial1);
+    }
+</script>
+
+Enter a number:<input type="text" id="t23">
+<input type="button" value="click here" onclick="return findfactorial()">
+
+<!--Question 16 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q16</h6>
+<script>
+    function factors(){
+        var num7=parseInt(document.getElementById("t28").value), v;
+        for(v=1; v<=num7; v++){
+            if(num7 % v == 0){
+                document.writeln(v);
+            }
+        }
+    }
+</script>
+Enter a number:<input type="text" id="t28">
+<input type="button" value="Check Here" onclick="return factors()">
+
+<!--Question 17 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q17</h6>
+<script>
+    function reverse(){
+        var num8=parseInt(document.getElementById("t29").value), rem4, sum4=0;
+       while(num8!=0){
+           rem4=(num8%10);
+           sum4=sum4*10+rem4;
+           num8=Math.floor(num8/10);
+       }
+        document.writeln("Reverse is: "+sum4);
+       
+    }
+</script>
+Enter a number:<input type="text" id="t29">
+<input type="button" value="Check Here" onclick="return reverse()">
+
+<!--Question 18 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q18</h6>
+<script>
+    function armstrong(){
+        var num9=parseInt(document.getElementById("t30").value), sum5=0, rem5;
+        var temp5=num9;
+        var temp6=num9;
+       
+        //To count total no of digits
+        var count5=0;
+        while(temp6!=0){
+            temp6=Math.floor(temp6/10);
+            ++count5;
+        }
+
+        //For checking of armstrong
+        while(temp5!=0){
+            rem5=temp5%10;
+            sum5=sum5+Math.pow(rem5 , count5);
+            temp5=Math.floor(temp5/10);
+        }
+        if(num9==sum5){
+            document.writeln("Is an Armstrong Number");
+        }
+        else{
+            document.writeln("Is not an Armstrong Number");
+
+        }
+    }
+</script>
+Enter a number:<input type="text" id="t30">
+<input type="button" value="Check Here" onclick="return armstrong()">
+
+<!--Question 19 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q19</h6>
+<script>
+    function checkprime(){
+        var num10=parseInt(document.getElementById("t31").value), flag=0;
+        var num11=num10/2;
+        console.log(num11);
+        for(var x=2; x<=num11; x++){
+            if(num10%x==0){
+                document.writeln("It is not a prime number.");
+                flag=1
+                break;
+            }
+        }
+        if(flag==0){
+                document.writeln("It is a prime number.");
+            }
+    }
+</script>
+Enter a number:<input type="text" id="t31">
+<input type="button" value="Check Here" onclick="return checkprime()">
+
+<!--Question 20 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q20</h6>
+<script>
+    function perfect(){
+        var num113=parseInt(document.getElementById("t32").value);
+        var temp12 = 0;
+        for(var y=1;y<=num13/2;y++){
+         if(num13%y === 0){
+                temp12 += y;
+          }
+        }
+   
+        if(temp12 === num13 && temp12 !== 0){
+            document.writeln("It is a perfect number.");
+        } 
+        else{
+            document.writeln("It is not a perfect number.");
+        }
+    }   
+        
+</script>
+Enter a number:<input type="text" id="t32">
+<input type="button" value="Check Here" onclick="return perfect()">
+
+<!--Question 20 --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h6>Q21</h6>
+<script>
+    function strong(){
+        var num14=parseInt(document.getElementById("t33").value);
+        var sum7 = 0, rem7 = 0, temp7=num14;
+        while(num14){
+				
+				var z=1;
+				var fact7=1;
+				
+				rem7=num14%10;
+				
+				while(z<=rem7){
+					fact7=fact7*z;
+					z++;
+				}
+				
+				sum7=sum7+fact7;
+				num14=Math.floor(num14/10);
+            }
+			
+			if(temp7 == sum7){
+				document.writeln(num14 +" is a Strong Number");
+			}
+            else{
+				document.writeln(num14 +" is Not a Strong Number");
+			}
+    }   
+        
+</script>
+Enter a number:<input type="text" id="t33">
+<input type="button" value="Check Here" onclick="return strong()">
+
+
+</body>
+</html>

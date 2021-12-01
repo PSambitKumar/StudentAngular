@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Charcter Range Validation in Javascript</title>
+<script>
+function rangeValidN(elem,min,max,msg)
+{
+
+if(!(parseInt(elem.value)>=min && parseInt(elem.value)<=max))
+{
+alert(msg);
+elem.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+Enter Your Age : <input type=text id=t1><br>
+<input type=button value=Check onclick="return rangeValidN(document.getElementById('t1'),18,62,'Age Between 18 to 62')">
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Only Digits Validation in Javascript</title>
+<script>
+function emailValid(elem,msg)
+{
+var exp=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+if(!(elem.value.match(exp)))
+{
+alert(msg);
+elem.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+Enter Your Email : <input type=text id=t1><br>
+<input type=button value=Check onclick="return emailValid(document.getElementById('t1'),'Inavlid Email Address')">
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Question no1 -->
+    <h4>Q1 Finding largest and lowest number in an array.</h4>
+    <script>
+        function largest(){
+            var arr= new Array;
+            arr[0]=12;
+            arr[1]=13;
+            arr[2]=14;
+            arr[3]=25;
+            arr[4]=16;
+            arr[5]=17;
+            arr[6]=18;
+
+            var lrgst=arr[0];
+            
+            for(var i=1; i<=6; i++){
+                if (arr[i]>lrgst){
+                    lrgst=arr[i];
+                }
+            }
+
+            document.writeln("Largest Number is: "+lrgst);
+
+        }
+
+        function lowest(){
+            var arr1= new Array;
+            arr1[0]=12;
+            arr1[1]=13;
+            arr1[2]=14;
+            arr1[3]=25;
+            arr1[4]=16;
+            arr1[5]=17;
+            arr1[6]=18;
+
+            var lwst=arr1[0];
+            
+            for(var i=1; i<=6; i++){
+                if (arr1[i]<lwst){
+                    lwst=arr[i];
+                }
+            }
+
+            document.writeln("Largest Number is: "+lwst);
+
+        }        
+    </script>
+    <input type="button" value="Check Largest" onclick="return largest()">
+    <input type="button" value="Check Lowest" onclick="return lowest()"><br><br>
+
+<!-- question no 2 -->
+<h4>Q2 Arrange in descending order.</h4>
+    <script>
+        function des(){
+            var arr2= new Array;
+            arr2[0]=18;
+            arr2[1]=13;
+            arr2[2]=19;
+            arr2[3]=25;
+            arr2[4]=16;
+            arr2[5]=56;
+            arr2[6]=28;
+
+            for(var j=0; j<=6; j++){
+                for(var k=j+1; k<=6; k++){
+                    if(arr2[j]<arr2[k]){
+                        var des=arr2[j];
+                        arr2[j]=arr2[k];
+                        arr2[k]=des;
+                    }
+                }
+            }
+            for(var l=0; l<=6; l++){
+                document.writeln(arr2[l]);
+            }
+        }
+    </script>
+
+    <input type="button" value="Check Descending" onclick="return des()">
+
+    <!-- Question no 3 -->
+    <h4>Q3 Reverse of each element.</h4>
+    <script>
+        function rev(){
+            var arr3=["Bhubaneswar","Cuttack","Puri"];
+            //var arr3=new Array;
+            // arr3[0]="Cuttack";
+            // arr3[1]="Bhubaneswar";
+            // arr3[2]="Kendrapara";
+            // arr3[3]="Puri";
+            // console.log(arr3[3]);
+            
+
+            for(var m=2; m>=0;m--){
+                document.writeln(arr3[m]+",");
+            }
+        }
+    </script>
+    <input type="button" value="Check Here" onclick="return rev()">
+
+    <!-- Question no 4 -->
+    <h4>Q4 Print character with number of times.</h4>
+    <script>
+        function charCount(){
+            var arr4=new Array;
+            arr4[0]='a';
+            arr4[1]='b';
+            arr4[2]='c';
+            arr4[3]='a';
+            arr4[4]='c';
+
+            arr4.sort();
+
+            for(var n=0; n<=4; n++){
+                var counts=1;
+                for (var p=1; p<=4;p++){
+                    if(arr4[n]==arr4[p]){
+                        counts++;
+                    }
+                }
+            }
+            if(counts!=0 && counts!=1){
+                document.writeln(arr4[n]+"="+counts);
+            }
+        }
+    </script>
+    <input type="button" value="Check Here" onclick="return charCount()">
+
+    <!-- Question no 5 -->
+    <h4>Q5 Average check</h4>
+    <script>
+        function avgcheck(){
+        var arr5=new Array;
+        arr5[0]=10;
+        arr5[1]=11;
+        arr5[2]=12;
+        arr5[3]=13;
+        arr5[4]=14;
+
+        var sum=0;
+        for(var n=0;n<=4;n++){
+            sum+=arr5[n];
+        }
+        //console.log(sum);
+        
+        var avg=parseInt(sum/arr5.length);
+        // console.log(avg);
+        
+        for(var o=0;o<arr5.length;o++){
+            if(arr5[o]<avg){
+                var k=arr5[o];
+                console.log(k);
+                
+                document.writeln(arr5[o]);
+            }
+            
+        }
+        }
+    </script>
+    <input type="button" value="Click Here" onclick="return avgcheck()"><br>
+</body>
+</html>

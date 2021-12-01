@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- Check armstrong between two numbers: -->
+<h4>Q1.Find Armstrong between 2 number</h4>
+    <script>
+
+    function checkArmstrong(){
+        var q=parseInt(document.getElementById("t1").value);
+        var r=parseInt(document.getElementById("t2").value);
+        for(var c=q; c<=r; c++){
+            var sum5=0;
+            var rem5=0;
+            var temp6=c;
+            var temp5=c;
+            var count5=0;
+
+        //To count total no of digits
+        var count5=0;
+        while(temp6!=0){
+            temp6=Math.floor(temp6/10);
+            ++count5;
+        }
+
+        //For checking of armstrong
+        while(temp5!=0){
+            rem5=temp5%10;
+            sum5=sum5+Math.pow(rem5 , count5);
+            temp5=Math.floor(temp5/10);
+        }
+        if(c==sum5){
+            document.writeln(c+ ", ");
+        }
+    }
+    }
+    </script>
+    Enter First Number:<input type="text" id="t1"><br><br>
+    Enter Second Number:<input type="text" id="t2"><br><br>
+    <input type="button" value="Armstrong" onclick="return checkArmstrong()"><br><br><br>
+
+
+
+<!-- Check Prime between two numbers: -->
+    <h4>Q2 Prime number between 2 number.</h4>
+    <script>
+        function checkPrime(){
+            var o=document.getElementById("t3").value;
+            var p=document.getElementById("t4").value;
+        //var o=10, p=100;
+        
+        for(var k=o; k<=p; k++){
+            flag=0;
+        var num3=k/2;
+        console.log(num3);
+        for(var x=2; x<=num3; x++){
+            if(num3%x==0){
+                flag=1
+                break;
+            }
+        }
+        if(flag==0){
+                document.writeln(k+" ,");
+            }
+        }
+    }
+</script>
+    Enter First Number:<input type="text" id="t3"><br><br>
+    Enter Second Number:<input type="text" id="t4"><br><br>
+    <input type="button" value="Get Prime" onclick="return checkPrime()"><br><br><br>
+
+
+<!-- Array in assending order. -->
+<h4>Q3 Arrange in descending order.</h4>
+    <script>
+        function des(){
+            var arr2= new Array;
+            arr2[0]=18;
+            arr2[1]=13;
+            arr2[2]=19;
+            arr2[3]=25;
+            arr2[4]=16;
+            arr2[5]=56;
+            arr2[6]=28;
+
+            for(var s=0; s<arr2.length; s++){
+                for(var t=s+1; t<=arr2.length; t++){
+                    if(arr2[s]<arr2[t]){
+                        var min=arr2[s];
+                        arr2[s]=arr2[t];
+                        arr2[t]=min;
+                    }
+                }
+            }
+            for(var l=0; l<arr2.length; l++){
+                document.writeln(arr2[l]);
+            }
+        }
+    </script>
+    <input type="button" value="Check Descending" onclick="return des()"><br><br><br>
+
+
+<!-- Reverse string array -->
+    <h4>Q4 Reverse of string array.</h4>
+    <script>
+        function rev(){
+            var arr3=["Bhubaneswar","Cuttack","Puri"];
+        
+            for(var u=2; u>=0;u--){
+                document.writeln(arr3[u]+",");
+            }
+        }
+    </script>
+    <input type="button" value="Check Here" onclick="return rev()"><br><br><br>
+
+    </body>
+    </html>

@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Compair Field Validation in Javascript</title>
+<script>
+function compValid(elem1,elem2,msg)
+{
+if(elem1.value!=elem2.value)
+{
+alert(msg);
+elem2.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+Enter Password : <input type=text id=t1><br>
+Enter Confirm Password : <input type=text id=t2>
+<input type=button value=Check onclick="return compValid(document.getElementById('t1'),document.getElementById('t2'),'Password and Confirm Password Should Same')">
+</body>
+</html>

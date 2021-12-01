@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Question 1 -->
+    <h4>Q1 Print a multi dimentional array;</h4>
+    <script>
+        function muldim(){
+            var arr=[['A','B','C'], ['D','E','F'],['G','H','I']];
+            console.log(arr.length);
+            
+            for(var i=0; i<=2; i++){
+                for(var j=0; j<=2; j++){
+                    document.writeln(arr[i][j]);  
+                }
+                document.writeln("<br>");
+            }
+
+            document.writeln("<br>");
+
+
+            for(var i=0; i<=2; i++){
+                for(var j=0; j<=2; j++){
+                    if((i==0 && j==1) || (i==0 && j==2) || i==1 && j==2 ){
+                        continue;
+                    }
+                    else{
+                    document.writeln(arr[i][j]);
+                    }
+                }
+                document.writeln("<br>");
+            }
+        }
+    </script>
+    <input type="button" value="Check Here" onclick="return muldim()">
+
+    <!-- Question 2 -->
+    <h4>Q2 print 2nd multidimentional array.</h4>
+    <script>
+        function muldim1(){
+            var arr1=[['A','B','C'], ['D','E','F'],['G','H','I']];
+            for(var k=0; k<=2; k++){
+                for(var l=0; l<=2; l++){
+                    if(k==1 && l==0){
+                        document.writeln("&nbsp&nbsp&nbsp");
+                        continue;
+                    }
+                    else if(k==2 && l==0){
+                        document.writeln("&nbsp&nbsp&nbsp");
+                        continue;
+                    }
+                    else if(k==2 && l==1){
+                        document.writeln("&nbsp&nbsp&nbsp");
+
+                        continue;
+                    }
+                    else{
+                    document.writeln(arr1[k][l]);
+                    }
+                }
+                document.writeln("<br>");
+            }
+        }
+        
+    </script>
+    <input type="button" value="Check Here" onclick="return muldim1()">
+
+
+    <!-- Question 3 -->
+    <h4>Q3 print 3nd multidimentional array.</h4>
+    <script>
+        function muldim2(){
+            var arr2=[['A','B','C','D','E'],['D','E','F','G','H'],['G','H','I','J','K']];
+            for(var m=0; m<=2; m++){
+                for(var n=0; n<=4; n++){
+                    if(m==0 && n==0 || (m==0 && n==1) || (m==0 && n==3) || (m==0 && n==4) || (m==1 && n==0) || (m==1 && n==4) ){
+                        document.writeln("&nbsp&nbsp&nbsp");
+                        continue;
+                    }
+                    else{
+                    document.writeln(arr2[m][n]);
+                    }
+                }
+                document.writeln("<br>");
+            }
+        }
+        
+    </script>
+    <input type="button" value="Check Here" onclick="return muldim2()">
+
+    <!-- Question 4 -->
+    <h4>Q4 Print sum of rows of multidimentional array</h4>
+    <script>
+        function sumarray(){
+            var arr2=[[1,2,3,4,5],
+                      [2,3,4,5,6],
+                      [3,4,5,6,7]];
+
+        //Printing Array:
+            for(var o=0; o<=2; o++){
+                for(var p=0; p<=4; p++){
+                    document.writeln(arr2[o][p]);
+                }
+                document.writeln("<br>");
+            }
+        document.writeln("<br>");
+
+        //Printing Sum:
+                for(var o=0; o<=2; o++){
+                    var sum=0;
+                    for(var p=0; p<=4; p++){
+                        sum+=arr2[o][p];
+                    }
+                    document.writeln(sum);
+
+                }
+        }
+    </script>
+    <input type="button" value="Click Here" onclick="return sumarray()">
+
+
+    <!-- Question 4 -->
+    <h4>Q5 Print sum of columns of multidimentional array</h4>
+    <script>
+        function sumarray1(){
+            var arr3=[[1,2,3,4,5],
+                      [2,3,4,5,6],
+                      [3,4,5,6,7]];
+            for(var q=0; q<=2; q++){
+                for(var r=0; r<=4; r++){
+                    document.writeln(arr3[q][r]);
+                }
+                document.writeln("<br>");
+            }
+        document.writeln("<br>");
+
+
+                      for(var q=0; q<=4; q++){
+                          var sum=0;
+                          for(var r=0; r<=2; r++){
+                            sum+=arr3[r][q];
+                          }
+                          document.writeln(sum);
+                      }
+        }
+    </script>
+    <input type="button" value="Click Here" onclick="return sumarray1()">
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Must Select Validation in Javascript</title>
+<script>
+function mustSelect(elem,msg)
+{
+if(elem.value=="Select One")
+{
+alert(msg);
+elem.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+select a City: 
+<select id=city>
+<option value="Select One">Select One</option>
+<option value="Bhubaneswar">Bhubaneswar</option>
+<option value="Patna">Patna</option>
+<option value="Ranchi">Ranchi</option>
+<option value="Kolkata">Kolkata</option>
+<option value="Delhi">Delhi</option>
+<option value="Bhopal">Bhopal</option>
+</select>
+<input type=button value=Check onclick="return mustSelect(document.getElementById('city'),'Please Select a City')">
+</body>
+</html>
