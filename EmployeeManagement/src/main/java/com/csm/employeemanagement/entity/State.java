@@ -12,8 +12,18 @@ public class State {
     private int sid;
     @Column
     private String sname;
-    @Column
-    private int countryId;
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
+
+    @Override
+    public String toString() {
+        return "State{" +
+                "sid=" + sid +
+                ", sname='" + sname + '\'' +
+                ", country=" + country +
+                '}';
+    }
 
     public int getSid() {
         return sid;
@@ -31,20 +41,11 @@ public class State {
         this.sname = sname;
     }
 
-    public int getCountryId() {
-        return countryId;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
-
-    @Override
-    public String toString() {
-        return "State{" +
-                "sid=" + sid +
-                ", sname='" + sname + '\'' +
-                ", countryId=" + countryId +
-                '}';
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }
