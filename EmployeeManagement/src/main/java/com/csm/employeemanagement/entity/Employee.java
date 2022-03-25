@@ -2,7 +2,7 @@ package com.csm.employeemanagement.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table
@@ -23,12 +23,53 @@ public class Employee implements Serializable {
     private Date empDob;
     @Column
     private String empGender;
+
+    @Column
+    private Date empApplyDate;
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country empNationality;
     @ManyToOne
     @JoinColumn(name = "relegion_id")
     private Religion empReligion;
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "empId=" + empId +
+                ", empCode='" + empCode + '\'' +
+                ", empName='" + empName + '\'' +
+                ", empPhn=" + empPhn +
+                ", empEmail='" + empEmail + '\'' +
+                ", empDob=" + empDob +
+                ", empGender='" + empGender + '\'' +
+                ", empApplyDate=" + empApplyDate +
+                ", empNationality=" + empNationality +
+                ", empReligion=" + empReligion +
+                ", empQualification=" + empQualification +
+                ", permanentAddress=" + permanentAddress +
+                '}';
+    }
+
+    public Date getEmpApplyDate() {
+        return empApplyDate;
+    }
+
+    public void setEmpApplyDate(Date empApplyDate) {
+        this.empApplyDate = empApplyDate;
+    }
+
+    public Qualification getEmpQualification() {
+        return empQualification;
+    }
+
+    public void setEmpQualification(Qualification empQualification) {
+        this.empQualification = empQualification;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "qual_id")
+    private Qualification empQualification;
     @ManyToOne
     @JoinColumn(name = "per_id")
     private PermanentAddress permanentAddress;
@@ -115,19 +156,4 @@ public class Employee implements Serializable {
     }
 
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "empId=" + empId +
-                ", empCode='" + empCode + '\'' +
-                ", empName='" + empName + '\'' +
-                ", empPhn=" + empPhn +
-                ", empEmail='" + empEmail + '\'' +
-                ", empDob=" + empDob +
-                ", empGender='" + empGender + '\'' +
-                ", empNationality=" + empNationality +
-                ", empReligion=" + empReligion +
-                ", permanentAddress=" + permanentAddress +
-                '}';
-    }
 }

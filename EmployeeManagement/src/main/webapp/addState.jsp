@@ -22,7 +22,7 @@
         <div class="form-group row required">
 
             <div class="col-md-4">
-                <label class="form-label control-label" >Country Name</label>
+                <label class="form-label control-label" >Select Country</label>
                 <select name="inputCountry" id="inputCountry" class="form-control lab" onchange="findDistrictByStateId(this.value)" required="required">
                     <option value="0">Select</option>
                     <c:forEach items="${countryList}" var="countryList">

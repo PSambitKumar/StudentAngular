@@ -1,10 +1,7 @@
 package com.csm.employeemanagement.controller;
 
 import com.csm.employeemanagement.dbconfig.DBConfig;
-import com.csm.employeemanagement.entity.Country;
-import com.csm.employeemanagement.entity.Employee;
-import com.csm.employeemanagement.entity.Religion;
-import com.csm.employeemanagement.entity.State;
+import com.csm.employeemanagement.entity.*;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -35,6 +32,10 @@ public class addEmployee extends HttpServlet {
         Query query3 = session.createQuery("From Employee ");
         List<Employee> employeeList = query3.list();
         request.setAttribute("employeeList", employeeList);
+
+        Query query4 = session.createQuery("From Qualification ");
+        List<Qualification> qualificationList = query4.list();
+        request.setAttribute("qualificationList", qualificationList);
 
         request.getRequestDispatcher("addEmployee.jsp").forward(request, response);
     }
