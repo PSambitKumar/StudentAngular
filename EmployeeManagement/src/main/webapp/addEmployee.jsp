@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Employee Master</title>
 </head>
 <body style="font-family: 'Segoe UI'; margin: 100px">
@@ -27,7 +31,7 @@
 
                 <div class="col-md-4">
                     <label class="form-label control-label" >Employee Name<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="inputName" name="inputName"  placeholder="Enter Your Name"/>
+                    <input type="text" class="form-control" id="inputName" name="inputName" <%--onblur="validateName()"--%>  placeholder="Enter Your Name"/>
                     <div id="name-alert"></div>
                 </div>
 
@@ -174,7 +178,7 @@
             </div>
 
             <div style="margin-left: 10px" class="form-group row col-md-3">
-                <button onclick="window.location='home.jsp'; return false;" class="btn btn-danger">Cancel</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
             </div>
 
         </div>
@@ -183,6 +187,31 @@
 
     </div>
 </form>
+
+<script>
+    function validateName(){
+        var name = $('#inputName').val();
+
+        $.ajax({
+            type: "GET",
+            url: "/checkDuplicateData",
+            data: {
+                "name" : name
+            },
+            success: function (response){
+                var value = response;
+                if (value == "Found"){
+                    // alert("Employee Name Already Present!!");
+                    $('#name-alert').html("Employee Name Already Present!!").css('color', 'red');
+                    $('#inputName').val("");
+                    $('#inputName').css('border', '1px solid red');
+                    $('#inputName').focus();
+                }
+            },
+            error: function (response){}
+        });
+    }
+</script>
 
 </body>
 </html>
