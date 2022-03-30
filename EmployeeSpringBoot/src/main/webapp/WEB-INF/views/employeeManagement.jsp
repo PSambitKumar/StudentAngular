@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -30,23 +29,20 @@
 
 
                 <div class="col-md-4">
-                    <label class="form-label control-label" >Employee Name<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="inputName" name="inputName" <%--onblur="validateName()"--%>  placeholder="Enter Your Name"/>
-                    <div id="name-alert"></div>
+                    <label class="form-label control-label" for="inputName">Employee Name<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="inputName" name="empName" <%--onblur="validateName()"--%>  placeholder="Enter Your Name"/>
                 </div>
 
 
                 <div class="col-md-4">
-                    <label class="form-label" >Mobile Number<span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="inputMobile" name="inputMobile"  placeholder="Enter Mobile Number"/>
-                    <div id="mobile-alert"></div>
+                    <label class="form-label" for="inputMobile" >Mobile Number<span style="color: red">*</span></label>
+                    <input type="number" class="form-control" id="inputMobile" name="empPhn"  placeholder="Enter Mobile Number"/>
                 </div>
 
 
                 <div class="col-md-4">
-                    <label class="form-label" >Email Address<span style="color: red">*</span></label>
-                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"  placeholder="Enter Email Address"/>
-                    <div id="email-alert"></div>
+                    <label class="form-label" for="inputEmail">Email Address<span style="color: red">*</span></label>
+                    <input type="email" class="form-control" id="inputEmail" name="empEmail"  placeholder="Enter Email Address"/>
                 </div>
 
             </div>
@@ -55,33 +51,36 @@
 
 
                 <div class="col-md-4">
-                    <label class="form-label control-label" >Date of Birth<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="inputDob" name="inputDob"  placeholder="Select Date"/>
-                    <div id="dob-alert"></div>
+                    <label class="form-label control-label"  for="inputDob">Date of Birth<span style="color: red">*</span></label>
+                    <input type="date" class="form-control" id="inputDob" name="empDob"  placeholder="Select Date"/>
                 </div>
 
 
                 <div class="col-md-4">
-                    <label class="form-label" >Select Nationality<span style="color: red">*</span></label>
-                    <select name="inputNationality" id="inputNationality" class="form-control lab" onchange="findStateByCountryId(this.value)" required="required">
+                    <label class="form-label" for="inputNationality">Select Nationality<span style="color: red">*</span></label>
+                    <select name="empNationality" id="inputNationality" class="form-control lab" onchange="findStateByCountryId(this.value)" required="required">
                         <option value="0">Select</option>
                         <c:forEach items="${countryList}" var="countryList">
                             <option value="${countryList.cid}">${countryList.cname}</option>
                         </c:forEach>
                     </select>
-                    <div id="nation-alert"></div>
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-4" id="rel1">
                     <label class="form-label" >Select Religion<span style="color: red">*</span></label>
-                    <select name="inputReligion" id="inputReligion" class="form-control lab"  required="required">
+                    <select name="empReligion" id="inputReligion" class="form-control lab" required="required">
                         <option value="0">Select</option>
                         <c:forEach items="${religionList}" var="religionList">
                             <option value="${religionList.rid}">${religionList.rname}</option>
                         </c:forEach>
+                        <option value="Other">Other</option>
                     </select>
-                    <div id="religion-alert"></div>
+                </div>
+
+                <div class="col-md-4" id="rel2">
+                    <label class="form-label" >Enter Religion<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="inputRel1" name="empReligion.rname"  placeholder="Enter Religion"/>
                 </div>
 
             </div>
@@ -92,21 +91,19 @@
 
                 <div class="col-md-4">
                     <label class="form-label control-label" >Select Qualification<span style="color: red">*</span></label>
-                    <select name="inputQualification" id="inputQualification" class="form-control lab"  required="required">
+                    <select name="empQualification" id="inputQualification" class="form-control lab"  required="required">
                         <option value="0">Select</option>
                         <c:forEach items="${qualificationList}" var="qualificationList">
                             <option value="${qualificationList.qualId}">${qualificationList.qualName}</option>
                         </c:forEach>
                     </select>
-                    <div id="qual-alert"></div>
                 </div>
 
 
                 <div style="margin-top: 30px" class="col-md-4">
                     <label class="form-label" >Select Gender<span style="color: red">*</span></label>
-                    <input class="form-check-input" type="radio" name="inputGender" value="male">Male &emsp;
+                    <input class="form-check-input" type="radio" name="empGender" value="male">Male &emsp;
                     <input class="form-check-input" type="radio" name="inputGender" value="female">Female
-                    <div id="gen-alert"></div>
                 </div>
 
 
@@ -120,27 +117,24 @@
 
                 <div class="col-md-4">
                     <label class="form-label control-label" >Street<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="inputStreet" name="inputStreet"  placeholder="Enter Street"/>
-                    <div id="street-alert"></div>
+                    <input type="text" class="form-control" id="inputStreet" name="empPermanentAddress.street"  placeholder="Enter Street"/>
                 </div>
 
 
                 <div class="col-md-4">
                     <label class="form-label" >City<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="inputCity" name="inputCity"  placeholder="Enter City"/>
-                    <div id="city-alert"></div>
+                    <input type="text" class="form-control" id="inputCity" name="empPermanentAddress.city"  placeholder="Enter City"/>
                 </div>
 
 
                 <div class="col-md-4">
                     <label class="form-label" >Select Country<span style="color: red">*</span></label>
-                    <select name="inputCountry" id="inputCountry" class="form-control lab" onchange="findStatetByCountryId(this.value)" required="required">
+                    <select name="empPermanentAddress.country" id="inputCountry" class="form-control lab" onchange="findStatetByCountryId(this.value)" required="required">
                         <option value="0">Select</option>
                         <c:forEach items="${countryList}" var="countryList">
                             <option value="${countryList.cid}">${countryList.cname}</option>
                         </c:forEach>
                     </select>
-                    <div id="country-alert"></div>
                 </div>
 
             </div>
@@ -150,20 +144,18 @@
 
                 <div class="col-md-4">
                     <label class="form-label control-label" >Select State<span style="color: red">*</span></label>
-                    <select name="inputState" id="inputState" class="form-control lab" required="required">
+                    <select name="empPermanentAddress.state" id="inputState" class="form-control lab" required="required">
                         <option value="0">Select</option>
                         <c:forEach items="${stateList}" var="stateList">
                             <option value="${stateList.sid}">${stateList.sname}</option>
                         </c:forEach>
                     </select>
-                    <div id="state-alert"></div>
                 </div>
 
 
                 <div class="col-md-4">
                     <label class="form-label" >Pincode<span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="inputPin" name="inputPin"  placeholder="Enter Pin Code"/>
-                    <div id="pin-alert"></div>
+                    <input type="number" class="form-control" id="inputPin" name="empPermanentAddress.pincode"  placeholder="Enter Pin Code"/>
                 </div>
 
             </div>
@@ -174,7 +166,7 @@
         <div style="margin: auto; margin-top: 20px" class="form-group row col-md-8">
 
             <div class="form-group row col-md-3">
-                <button id="submit"   class="btn btn-success">Submit</button>
+                <button id="submit" <%--onclick="saveEmployee()"--%> type="submit"  class="btn btn-success">Submit</button>
             </div>
 
             <div style="margin-left: 10px" class="form-group row col-md-3">
@@ -188,30 +180,22 @@
     </div>
 </form>
 
+
 <script>
-    function validateName(){
-        var name = $('#inputName').val();
+    $(document).ready(function (){
 
-        $.ajax({
-            type: "GET",
-            url: "/checkDuplicateData",
-            data: {
-                "name" : name
-            },
-            success: function (response){
-                var value = response;
-                if (value == "Found"){
-                    // alert("Employee Name Already Present!!");
-                    $('#name-alert').html("Employee Name Already Present!!").css('color', 'red');
-                    $('#inputName').val("");
-                    $('#inputName').css('border', '1px solid red');
-                    $('#inputName').focus();
-                }
-            },
-            error: function (response){}
+        $('#rel2').hide();
+        $('#rel1').show();
+
+
+        $('#inputReligion').on('change', function (){
+            var name = $(this).val();
+            if (name == "Other"){
+                $('#rel1').hide();
+                $('#rel2').show();
+            }
         });
-    }
+    });
 </script>
-
 </body>
 </html>
