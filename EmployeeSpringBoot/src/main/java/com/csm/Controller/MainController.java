@@ -5,9 +5,7 @@ import com.csm.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -51,12 +49,28 @@ public class MainController {
     @PostMapping(value = "/saveEmployee")
     public String saveEmployee(@ModelAttribute Employee employee){
         System.out.println(employee);
+
         employee.setEmpApplyDate(new Date());
+
         int empMaxCode = employeeRepository.findMaxEmpId();
         String empCode = "VC"+String.format("%03d", empMaxCode);
         employee.setEmpCode(empCode);
+
+        religionRepository.save(employee.getEmpReligion());
         pAddressRepository.save(employee.getEmpPermanentAddress());
         employeeRepository.save(employee);
         return "employeeManagement";
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/CheckDuplicateEmployee")
+    public String checkDuplicateData(@RequestParam("name") String empName){
+        System.out.println(empName);
+        Employee employee = employeeRepository.getByEmpName(empName);
+        System.out.println(employee);
+        if (employee != null)
+            return "Success";
+        else
+            return "Fail";
     }
 }

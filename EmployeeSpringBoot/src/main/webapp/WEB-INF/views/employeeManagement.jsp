@@ -64,6 +64,7 @@
                             <option value="${countryList.cid}">${countryList.cname}</option>
                         </c:forEach>
                     </select>
+                    <div id="inputNationalityalert"></div>
                 </div>
 
 
@@ -129,7 +130,7 @@
 
                 <div class="col-md-4">
                     <label class="form-label" >Select Country<span style="color: red">*</span></label>
-                    <select name="empPermanentAddress.country" id="inputCountry" class="form-control lab" onchange="findStatetByCountryId(this.value)" required="required">
+                    <select name="empPermanentAddress.country" id="inputCountry" class="form-control lab" <%--onchange="findStatetByCountryId(this.value)"--%> required="required">
                         <option value="0">Select</option>
                         <c:forEach items="${countryList}" var="countryList">
                             <option value="${countryList.cid}">${countryList.cname}</option>
@@ -184,17 +185,80 @@
 <script>
     $(document).ready(function (){
 
+        // $('#inputName').attr('disabled', 'disabled');
         $('#rel2').hide();
         $('#rel1').show();
 
 
+        //Validating And Duplicate Checking
+        $('#inputName').blur(function (){
+            var name = $(this).val();
+            console.log(name);
+
+            //Cheking Empty Value
+            if (name == null || name == ""){
+                $('#inputName').focus().val("").css('border','1px solid red');
+                return false;
+            }else {
+                $('#inputName').css('border','1px solid green');
+                //For the return truw statement the control returns back so that the next ajax method is not called
+                // return true;
+            }
+
+            //Cheking Duplicate Value
+            $.ajax({
+                type : "Get",
+                url : "/CheckDuplicateEmployee",
+                data : {
+                    "name" : name
+                },
+                success : function (response){
+                    console.log(response);
+                    if (response == "Success"){
+                        $('#inputName').focus().val("").css('border','1px solid red');
+                        return false;
+                    }else {
+                        $('#inputName').css('border','1px solid green');
+                        return true;
+                    }
+                },
+                error : function (error){
+                    console.log(error);
+                }
+            });
+
+        });
+
+
+        //Validation Nationality Dropdown
+        $("#inputNationality").on('blur', function (){
+            var name = $(this).val();
+            console.log(name);
+            if (name==0){
+                // alert("Nationality Must Select!")
+                $('#inputNationalityalert').text("Country Must Select!!").css('color', 'red');
+                $('#inputNationality').focus().css('border','1px solid red');
+                return false;
+            }else {
+                $('#inputNationalityalert').html("Looks Good").css('color', 'green');
+                $('#inputNationality').css('border','1px solid green');
+                return true;
+            }
+            //End
+
+
+        })
+
+        //For Selecting Other from Religion dropdown
         $('#inputReligion').on('change', function (){
             var name = $(this).val();
             if (name == "Other"){
                 $('#rel1').hide();
+                $('#rel1').empty();
                 $('#rel2').show();
             }
         });
+
     });
 </script>
 </body>

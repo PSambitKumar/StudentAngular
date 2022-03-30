@@ -8,4 +8,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Query("SELECT MAX(empId) FROM Employee ")
     int findMaxEmpId();
+
+    Employee getByEmpName(String name);
 }
