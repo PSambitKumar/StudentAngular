@@ -181,6 +181,11 @@
     </div>
 </form>
 
+<div style="margin-left: 35rem">
+    <button onclick="window.location='employeeManagement'; return false;" class="btn btn-primary">Employee Management</button>
+    <button onclick="window.location='/viewemployeeManagement'; return false;" class="btn btn-success">View Employee</button>
+</div>
+
 
 <script>
     $(document).ready(function (){
@@ -256,6 +261,10 @@
                 $('#rel1').hide();
                 $('#rel1').empty();
                 $('#rel2').show();
+            }
+            else {
+                $('#rel2').hide();
+                $('#rel2').empty();
             }
         });
 

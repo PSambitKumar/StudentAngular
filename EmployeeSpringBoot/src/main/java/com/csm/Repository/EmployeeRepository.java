@@ -10,4 +10,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     int findMaxEmpId();
 
     Employee getByEmpName(String name);
+
 }

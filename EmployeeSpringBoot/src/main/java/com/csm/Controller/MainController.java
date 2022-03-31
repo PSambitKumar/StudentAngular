@@ -47,19 +47,26 @@ public class MainController {
     }
 
     @PostMapping(value = "/saveEmployee")
-    public String saveEmployee(@ModelAttribute Employee employee){
+    public String saveEmployee(@ModelAttribute Employee employee, Model model){
         System.out.println(employee);
-
         employee.setEmpApplyDate(new Date());
 
-        int empMaxCode = employeeRepository.findMaxEmpId();
-        String empCode = "VC"+String.format("%03d", empMaxCode);
-        employee.setEmpCode(empCode);
+        try {
+            int empMaxCode = employeeRepository.findMaxEmpId();
+            String empCode = "VC"+String.format("%03d", empMaxCode);
+            employee.setEmpCode(empCode);
+        }catch (Exception e){
+            String empCode = "VC"+String.format("%03d", 1);
+            employee.setEmpCode(empCode);
+        }
 
         religionRepository.save(employee.getEmpReligion());
         pAddressRepository.save(employee.getEmpPermanentAddress());
         employeeRepository.save(employee);
-        return "employeeManagement";
+
+        List<Employee> employeeList = employeeRepository.findAll();
+        model.addAttribute("employeeList", employeeList);
+        return "/viewEmployeeManagement";
     }
 
     @ResponseBody
@@ -73,4 +80,12 @@ public class MainController {
         else
             return "Fail";
     }
+
+    @GetMapping(value = "/viewemployeeManagement")
+    public String viewemployeeManagement(Model model){
+        List<Employee> employeeList = employeeRepository.findAll();
+        model.addAttribute("employeeList", employeeList);
+        return "/viewEmployeeManagement";
+    }
+
 }
