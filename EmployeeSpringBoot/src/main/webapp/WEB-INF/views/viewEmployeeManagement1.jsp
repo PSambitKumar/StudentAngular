@@ -51,29 +51,29 @@
         </thead>
 
         <tbody id="tableBody">
-<%--        <c:forEach items="${employeeList}" var="employeeList" varStatus="counter">--%>
-<%--            <tr>--%>
-<%--                <td>${counter.count}</td>--%>
-<%--                <td><a href="#myModal"data-toggle="modal" data-target="#myModal"  id="modalCheck" onclick="openModal(${employeeList.empId})">${employeeList.empCode}</a></td>--%>
-<%--                <td>${employeeList.empName}</td>--%>
-<%--                <td>${employeeList.empApplyDate}</td>--%>
-<%--                <td>${employeeList.empPhn}</td>--%>
-<%--                <td>${employeeList.empEmail}</td>--%>
-<%--                <td>--%>
-<%--                    <a href = "/editEmployee/${employeeList.empId}"><span class="glyphicon glyphicon-edit"></span></a>--%>
-<%--                    |--%>
-<%--                    <a href = "/deleteEmployee/${employeeList.empId}"><span class="glyphicon glyphicon-trash"></span></a>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
+        <c:forEach items="${employeeList}" var="employeeList" varStatus="counter">
+            <tr>
+                <td>${counter.count}</td>
+                <td><a href="#myModal"data-toggle="modal" data-target="#myModal"  id="modalCheck" onclick="openModal(${employeeList.empId})">${employeeList.empCode}</a></td>
+                <td>${employeeList.empName}</td>
+                <td>${employeeList.empApplyDate}</td>
+                <td>${employeeList.empPhn}</td>
+                <td>${employeeList.empEmail}</td>
+                <td>
+                    <a href = "/editEmployee/${employeeList.empId}"><span class="glyphicon glyphicon-edit"></span></a>
+                    |
+                    <a href = "/deleteEmployee/${employeeList.empId}"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
 
-<%--        <tfoot>--%>
-<%--        <tr>--%>
-<%--            <td colspan="2">Col Span 2</td>--%>
-<%--            <td colspan="5">Col Span 5</td>--%>
-<%--        </tr>--%>
-<%--        </tfoot>--%>
+        <tfoot>
+        <tr>
+            <td colspan="2">Col Span 2</td>
+            <td colspan="5">Col Span 5</td>
+        </tr>
+        </tfoot>
 
     </table>
 

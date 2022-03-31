@@ -3,10 +3,14 @@ package com.csm.Controller;
 import com.csm.Entity.*;
 import com.csm.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +53,8 @@ public class MainController {
     @PostMapping(value = "/saveEmployee")
     public String saveEmployee(@ModelAttribute Employee employee, Model model){
         System.out.println(employee);
-        employee.setEmpApplyDate(new Date());
+        Date applyDate = new Date();
+        employee.setEmpApplyDate(applyDate);
 
         try {
             int empMaxCode = employeeRepository.findMaxEmpId();
@@ -59,6 +64,10 @@ public class MainController {
             String empCode = "VC"+String.format("%03d", 1);
             employee.setEmpCode(empCode);
         }
+
+        SimpleDateFormat sm = new SimpleDateFormat("MM-dd-yyyy");
+        String strDate = sm.format(applyDate);
+        employee.setDatePrint(strDate);
 
         religionRepository.save(employee.getEmpReligion());
         pAddressRepository.save(employee.getEmpPermanentAddress());
@@ -86,6 +95,26 @@ public class MainController {
         List<Employee> employeeList = employeeRepository.findAll();
         model.addAttribute("employeeList", employeeList);
         return "/viewEmployeeManagement";
+    }
+
+//    @ResponseBody
+//    @PostMapping(value = "/getDataOfTable")
+//    public String getDataOfTable(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize){
+//        System.out.println(pageNumber + "/" + pageSize);
+//        return "Success";
+//    }
+
+    @ResponseBody
+    @PostMapping(value = "/getDataOfTable")
+    public List<Employee> getDataOfTable(@RequestParam(value = "pageNumber", required = false) int pageNumber, @RequestParam(value = "pageSize", required = false) int pageSize){
+        System.out.println(pageNumber + "/" + pageSize);
+        Pageable pageable = PageRequest.of(pageNumber-1, pageSize);
+        System.out.println(pageable);
+        Page<Employee> employeePage = employeeRepository.findAll(pageable);
+
+        System.out.println(employeePage);
+        System.out.println(employeePage.toList());//Printing List
+        return employeePage.toList();
     }
 
 }

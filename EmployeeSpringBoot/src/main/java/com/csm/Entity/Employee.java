@@ -50,4 +50,7 @@ public class Employee implements Serializable {
     @ManyToOne
     @JoinColumn(name = "pAdd_id")
     private PermanentAddress empPermanentAddress;
+
+    @Column
+    private String datePrint;
 }

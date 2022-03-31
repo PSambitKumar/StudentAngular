@@ -49,59 +49,23 @@
             <th>Action</th>
         </tr>
         </thead>
-
-        <tbody id="tableBody">
-<%--        <c:forEach items="${employeeList}" var="employeeList" varStatus="counter">--%>
-<%--            <tr>--%>
-<%--                <td>${counter.count}</td>--%>
-<%--                <td><a href="#myModal"data-toggle="modal" data-target="#myModal"  id="modalCheck" onclick="openModal(${employeeList.empId})">${employeeList.empCode}</a></td>--%>
-<%--                <td>${employeeList.empName}</td>--%>
-<%--                <td>${employeeList.empApplyDate}</td>--%>
-<%--                <td>${employeeList.empPhn}</td>--%>
-<%--                <td>${employeeList.empEmail}</td>--%>
-<%--                <td>--%>
-<%--                    <a href = "/editEmployee/${employeeList.empId}"><span class="glyphicon glyphicon-edit"></span></a>--%>
-<%--                    |--%>
-<%--                    <a href = "/deleteEmployee/${employeeList.empId}"><span class="glyphicon glyphicon-trash"></span></a>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
-        </tbody>
-
-<%--        <tfoot>--%>
-<%--        <tr>--%>
-<%--            <td colspan="2">Col Span 2</td>--%>
-<%--            <td colspan="5">Col Span 5</td>--%>
-<%--        </tr>--%>
-<%--        </tfoot>--%>
-
+        <tbody id="tableBody"></tbody>
     </table>
 
-    <div class="row">
-        <div class="col-xs-9">
-            <div <%--class="dataTables_info" id="dynamicTable_info"--%> role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-        </div>
-        <div class="col-xs-3">
-            <div <%--class="dataTables_paginate paging_simple_numbers" id="dynamicTable_paginate"--%>>
-                <ul class="pagination">
-                    <li class="paginate_button previous disabled" aria-controls="dynamicTable" tabindex="0" id="dynamicTable_previous"><a onclick="loadTableBodyData(10,0)">Previous</a></li>
-                    <li class="paginate_button active" aria-controls="dynamicTable" tabindex="0" id="btn1"><a onclick="loadDataOfTable(10,1)" style="cursor: pointer;">1</a></li>
-                    <li class="paginate_button" aria-controls="dynamicTable" tabindex="0" id="btn2"><a onclick="loadDataOfTable(10,2)" style="cursor: pointer;">2</a></li>
-                    <li class="paginate_button" aria-controls="dynamicTable" tabindex="0" id="btn3"><a onclick="loadDataOfTable(10,3)" style="cursor: pointer;">3</a></li>
-                    <li class="paginate_button next" aria-controls="dynamicTable" tabindex="0" id="dynamicTable_next"><a href="#">Next</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <div class="row" id="tableFoot"></div>
 
 </div>
 <div style="margin-left: 35rem">
     <button onclick="window.location='employeeManagement'; return false;" class="btn btn-primary">Home</button>
     <button onclick="window.location='/employeeManagement'; return false;" class="btn btn-success">Employee Registration</button>
 </div>
+
+
+
+
+
 <script>
     $(document).ready(function (){
-        // $('.table').DataTable();
         loadDataOfTable(10,1);
     });
 
@@ -111,11 +75,50 @@
         loadDataOfTable(pagesize, 1);
     });
 
+
+
     function loadDataOfTable(pageSize, pageNumber){
+        var count = 0;
         var pSize = pageSize;
         var pNumber = pageNumber;
         console.log("Page Size " + pSize + " Page Number " + pNumber)
+
+        $.ajax({
+            type : "POST",
+            url : "/getDataOfTable",
+            data : {
+               "pageSize" : pageSize,
+                "pageNumber" : pageNumber
+            } ,
+            success : function (response){
+                var htmlBody = "";
+                var htmlFoot = "";
+                var data = response;
+                console.log(data);
+
+                if (data != null || data != ""){
+                    $.each(data, function (index, value){
+                        count = count+1;
+                        htmlBody = htmlBody+'<tr><td>'+count+'</td><td>'+value.empCode+'</td><td>'+value.empName+'</td><td>'+value.datePrint+'</td></td><td>'+value.empPhn+'</td></td><td>'+value.empEmail+'</td><td><a class="btn btn-xs bigger btn-primary" href="#" title="Edit" onclick="editQualificationMaster('+value.qualId+');"><span class="glyphicon glyphicon-edit"></span></a></td>';
+                    });
+                }
+                else {
+                    html = 'Table Empty, No Data Found!!';
+                }
+                htmlFoot = '<div class="col-xs-9"> <div role="status" aria-live="polite">Showing '+pNumber+' to '+pSize+' of '+pSize+' entries</div> </div> <div class="col-xs-3"> <div> <ul class="pagination"> <li class="paginate_button previous disabled" aria-controls="dynamicTable" tabindex="0" id="dynamicTable_previous"><a onclick="loadTableBodyData('+pSize+',0)">Previous</a></li> <li class="paginate_button active" aria-controls="dynamicTable" tabindex="0" id="btn1"><a onclick="loadDataOfTable('+pSize+',1)" style="cursor: pointer;">1</a></li> <li class="paginate_button fade in" aria-controls="dynamicTable" tabindex="0" id="btn2"><a onclick="loadDataOfTable('+pSize+',2)" style="cursor: pointer;">2</a></li> <li class="paginate_button fade in" aria-controls="dynamicTable" tabindex="0" id="btn3"><a onclick="loadDataOfTable('+pSize+',3)" style="cursor: pointer;">3</a></li> <li class="paginate_button next fade in" aria-controls="dynamicTable" tabindex="0" id="dynamicTable_next"><a href="#">Next</a></li> </ul> </div>';
+
+                $('#tableBody').empty().append(htmlBody);
+                $('#tableFoot').empty().append(htmlFoot);
+            } ,
+            error : function (error){
+                console.log(error);
+            }
+        });
     }
+
+
+
+
 
     function openModal(id){
         var empId = id;
@@ -143,28 +146,21 @@
     }
 </script>
 
-<%--<button id="modalBtn" type="button" data-toggle="modal" data-target="#myModal">Open Modal</button>--%>
 
 <div class="container">
-    <%--    <!-- Modal -->--%>
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
-
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Employee Details</h4>
                 </div>
-
                 <div class="modal-body">
                     <div id="body"></div>
                 </div>
-
                 <div class="modal-footer">
                     <button onclick="refreshPage()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
-
             </div>
         </div>
     </div>
