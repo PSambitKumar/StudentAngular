@@ -162,4 +162,14 @@ public class MainController {
         model.addAttribute("reminder", reminder);
         return "viewemployeeManagementNumberPaging";
     }
+
+    @ResponseBody
+    @PostMapping(value = "/GetTableBodyDataAjax1")
+    public List<Employee> getTableBodyDataAjax1(@RequestParam(value = "pageSize", required = false) int pageSize, @RequestParam(value = "pageNumber", required = false) int pageNumber){
+        System.out.println(pageSize + " Data " + pageNumber);
+        Pageable pageable = PageRequest.of(pageNumber-1, pageSize);
+        Page<Employee> employeePage = employeeRepository.findAll(pageable) ;
+        System.out.println(employeePage.toList());
+        return employeePage.toList();
+    }
 }
