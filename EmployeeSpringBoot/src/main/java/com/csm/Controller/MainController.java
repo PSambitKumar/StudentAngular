@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -92,8 +93,8 @@ public class MainController {
 
     @GetMapping(value = "/viewemployeeManagement")
     public String viewemployeeManagement(Model model){
-        List<Employee> employeeList = employeeRepository.findAll();
-        model.addAttribute("employeeList", employeeList);
+//        List<Employee> employeeList = employeeRepository.findAll();
+//        model.addAttribute("employeeList", employeeList);
         return "/viewEmployeeManagement";
     }
 
@@ -117,4 +118,48 @@ public class MainController {
         return employeePage.toList();
     }
 
+    @GetMapping(value = "/viewemployeeManagementDropdown")
+    public String viewemployeeManagementDropdown(Model model){
+        int totalData = employeeRepository.getTotalNoOfEmployees();
+        int totalDropDown = totalData/10;
+        int reminder = totalData%10;
+
+        System.out.println("Reminder is " + reminder);
+
+        if (reminder > 0){
+            totalDropDown += totalDropDown;
+        }
+        System.out.println("TotalData" + totalData + ", Total Dropdown " + totalDropDown + ", Reminder " + reminder);
+
+        model.addAttribute("totalData", totalData);
+        model.addAttribute("totalDropdown", totalDropDown);
+        model.addAttribute("reminder", reminder);
+//        List<Employee> employeeList = employeeRepository.findAll();
+//        model.addAttribute("employeeList", employeeList);
+        return "viewemployeeManagementDropdown";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/GetTableBodyDataAjax")
+    public List<Employee> getTableBodyDataAjax(@RequestParam(value = "pageSize", required = false) int pageSize, @RequestParam(value = "pageNumber", required = false) int pageNumber){
+        System.out.println(pageSize + " Sambit " + pageNumber);
+        Pageable pageable = PageRequest.of(pageNumber-1, pageSize);
+        Page<Employee> employeePage = employeeRepository.findAll(pageable) ;
+        System.out.println(employeePage.toList());
+        return employeePage.toList();
+    }
+
+    @GetMapping(value = "/viewemployeeManagementNumberPaging")
+    public String viewemployeeManagementNumberPaging(Model model){
+        int totalData = employeeRepository.getTotalNoOfEmployees();
+        int totalPages = totalData/10;
+        int reminder = totalData%10;
+        if(reminder > 0){
+         totalPages += totalPages;
+        }
+        model.addAttribute("totalData", totalData);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("reminder", reminder);
+        return "viewemployeeManagementNumberPaging";
+    }
 }

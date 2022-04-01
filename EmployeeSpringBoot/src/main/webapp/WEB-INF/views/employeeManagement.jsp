@@ -181,9 +181,11 @@
     </div>
 </form>
 
-<div style="margin-left: 35rem">
+<div style="margin-left: 5rem">
     <button onclick="window.location='employeeManagement'; return false;" class="btn btn-primary">Employee Management</button>
-    <button onclick="window.location='/viewemployeeManagement'; return false;" class="btn btn-success">View Employee</button>
+    <button onclick="window.location='/viewemployeeManagement'; return false;" class="btn btn-success">View Employee(Dynamic Pagination)</button>
+    <button onclick="window.location='/viewemployeeManagementDropdown'; return false;" class="btn btn-success">View Employee(Dropdown Pagination)</button>
+    <button onclick="window.location='/viewemployeeManagementNumberPaging'; return false;" class="btn btn-success">View Employee(Paging Pagination)</button>
 </div>
 
 
