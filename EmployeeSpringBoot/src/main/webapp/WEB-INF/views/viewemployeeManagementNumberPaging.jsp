@@ -40,14 +40,21 @@
     <div class="row" id="tableFoot">
         <div class="row">
             <div class="col-xs-9">
-                <div role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
+                <div role="status" aria-live="polite" id="entriesData"><%--Showing 1 to 10 of ${totalData} entries--%></div>
             </div>
             <div class="col-xs-3">
                 <div >
                     <ul class="pagination">
                         <li class="paginate_button previous disabled" aria-controls="dynamicTable" tabindex="0" id="dynamicTable_previous"><a href="#">Previous</a></li>
                         <c:forEach var="item" begin="1" end="${totalPages}">
-                                <li class="paginate_button active" aria-controls="dynamicTable" tabindex="0" id="pagingBtn"><a onclick="loadTableBodyData(10,${item})" style="cursor: pointer;">${item}</a></li>
+                            <c:choose>
+                                <c:when test="${item == 1}">
+                                    <li class="paginate_button active" aria-controls="dynamicTable" tabindex="0" id="pagingBtn"><a onclick="loadTableBodyData(10,${item})" style="cursor: pointer;">${item}</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="paginate_button" aria-controls="dynamicTable" tabindex="0" id="pagingBtn"><a onclick="loadTableBodyData(10,${item})" style="cursor: pointer;">${item}</a></li>
+                                </c:otherwise>
+                            </c:choose>
                         </c:forEach>
                         <li class="paginate_button next" aria-controls="dynamicTable" tabindex="0" id="dynamicTable_next"><a href="#">Next</a></li>
                     </ul>
@@ -94,18 +101,39 @@
                 var data = response;
 
                 var html = "";
+                var html1 = "";
+
+                count = (10 * (pageNumber-1))
 
                 if (data != null || data != ""){
                     $.each(data, function (index, value){
-                        count = count + 1;
+                        count = count+1;
                         html = html + '<tr><td>'+count+'</td><td>'+value.empCode+'</td><td>'+value.empName+'</td><td>'+value.datePrint+'</td></td><td>'+value.empPhn+'</td></td><td>'+value.empEmail+'</td><td><a class="btn btn-xs bigger btn-primary" href="#" title="Edit" onclick="editQualificationMaster('+value.qualId+');"><span class="glyphicon glyphicon-edit"></span></a></td>';
                     })
                 }
                 else{
                     html = 'Table Empty, No Data!!';
                 }
+                // ------------------------------------
+/*                1 to 10
+                11 to 20
+                21 to 30
+                Logic = for(int i = 0; i < data; i++){
+                    j = i+1
+                    (10*i+1) to (10*j)
+                }*/
+                // -------------------------------------
+                var value = pageNumber-1;
+
+                if (pageNumber != ${totalPages}){
+                    html1 = html1 + 'Showing ' + ((10 * value) +1) + ' to ' + 10 * pageNumber + ' of ' + ${totalData} + " Entries" ;
+                }
+                else {
+                    html1 = html1 + 'Showing ' + ((10 * value) +1) + ' to ' + ${totalData} + ' of ' + ${totalData} + " Entries" ;
+                }
 
                 $('#tableBody').empty().append(html);
+                $('#entriesData').empty().append(html1);
             },
             error : function (error){
                 console.log(error);
