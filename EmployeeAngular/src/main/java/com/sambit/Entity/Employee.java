@@ -20,6 +20,8 @@ public class Employee {
     private boolean empActive;
     private char empLock;
 
+
+
     public Employee() {
     }
 
