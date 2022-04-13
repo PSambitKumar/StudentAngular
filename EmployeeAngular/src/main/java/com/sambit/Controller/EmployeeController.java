@@ -2,6 +2,8 @@ package com.sambit.Controller;
 
 import com.sambit.Entity.Employee;
 import com.sambit.Repository.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,9 +16,11 @@ import java.util.Iterator;
 import java.util.List;
 
 @Controller
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/myApi/v1")
 public class EmployeeController {
+
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -24,7 +28,7 @@ public class EmployeeController {
     @ResponseBody
     @GetMapping("/getAllEmployeeDetails")
     public List<Employee> getAllEmployee(){
-        System.out.println("<<-------Inside Get All Employee------->>");
+        logger.info("<<-------Inside Get All Employee------->>" );
         List<Employee> employeeList = employeeRepository.findAll();
         return employeeList;
     }
