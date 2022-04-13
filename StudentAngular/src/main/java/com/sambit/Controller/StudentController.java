@@ -3,6 +3,7 @@ package com.sambit.Controller;
 import com.sambit.Model.Student;
 import com.sambit.Repository.StudentRepository;
 import com.sambit.Service.StudentService;
+import com.sambit.Utils.ANSIColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class StudentController {
     @ResponseBody
     @GetMapping(value = "/getAllStudents")
     public List<Student> getAllStudents(){
+        logger.info(ANSIColors.ansiGreen + studentService.getAllStudents().toString() + ANSIColors.ansiReset);
         return studentService.getAllStudents();
     }
 
