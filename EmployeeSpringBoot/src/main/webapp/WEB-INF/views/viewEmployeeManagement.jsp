@@ -51,7 +51,6 @@
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
-
     <div class="row" id="tableFoot"></div>
 
 </div>
