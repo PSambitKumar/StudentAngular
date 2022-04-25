@@ -19,7 +19,7 @@ public class Drive {
     private String companyURL;
 
     @OneToMany(targetEntity = StudentMaster.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "stud_reg", referencedColumnName = "driveId")
+    @JoinColumn(name = "driveId", referencedColumnName = "driveId")
     private List<StudentMaster> studentMasterList;
 
     public int getDriveId() {

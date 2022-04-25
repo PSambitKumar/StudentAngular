@@ -7,7 +7,7 @@
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<%--    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>--%>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
@@ -80,8 +80,8 @@
 
                 <div class="col-md-4">
                     <label class="form-label" for="companyName">Branch<span style="color: red">*</span></label></br>
-                    <input class="form-check-input"  type="checkbox" name="cse" id="cse" <%--value="CSE"--%>/><label>CSE</label>&emsp;
-                    <input class="form-check-input" type="checkbox" name="civil" id="civil" <%--value="CIVIL"--%>/><label>CIVIL</label>
+                    <input class="form-check-input"  type="checkbox" name="cse" id="cse" value="CSE"/><label>CSE</label>&emsp;
+                    <input class="form-check-input" type="checkbox" name="civil" id="civil" value="CIVIL"/><label>CIVIL</label>
                 </div>
 
 
@@ -118,6 +118,8 @@
 
         <div id="display"></div>
 
+        <div id="list1"></div>
+
     </div>
 </form>
 
@@ -131,6 +133,7 @@
         <table id="studentTable table" class="table table-striped table-bordered" style="margin-top: 1rem;">
             <thead>
             <tr>
+                <th>Sl. No</th>
                 <th>Regd No</th>
                 <th>Name</th>
                 <th>Branch</th>
@@ -144,6 +147,7 @@
 </div>
 
 <script>
+    var count = 0;
     function filterStudents(){
         var cse = $('#cse:checked').val();
         var civil = $('#civil:checked').val();
@@ -151,9 +155,33 @@
         var plustwoper = $('#plustwoPer').val();
         var cgpa = $('#cgpa').val();
         console.log(cse + civil + tenPer + plustwoper + cgpa);
-
-        if (cse =="on" && civil == "undefined" && tenPer == ""  && plustwoper == "" && cgpa == ""){
-
+        // cse =="on" && civil == undefined && tenPer == ""  && plustwoper == "" && cgpa == ""
+        if (cse =="CSE" && civil == undefined && tenPer == ""  && plustwoper == "" && cgpa == ""){
+            console.log("Inside This Method1--------------->>")
+            $.ajax({
+                type : "POST",
+                url : "/getCSEStudents",
+                data : {
+                    "cse" : cse,
+                },
+                success : function (data){
+                    console.log(data);
+                    var html = "";
+                    if (data != null && data != ""){
+                        $.each(data, function (index, value){
+                            count = count + 1 ;
+                            html = html + '<tr><td>'+count+'</td><td>'+value.regdNo+'</td><td>'+value.name+'</td><td>'+value.branch+'</td></td><td>'+value.emailId+'</td></td><td>'+value.mobileNo+'</td>';
+                        })
+                    }
+                    $('#tableBody').empty().append(html);
+                    $('#list').value(html);
+                    var html1 = '<input type="text" name="data" value="${data}">'
+                    $('#list1').append(html1);
+                },
+                error : function (error){
+                    console.log(error);
+                }
+            })
         }
     }
 </script>
