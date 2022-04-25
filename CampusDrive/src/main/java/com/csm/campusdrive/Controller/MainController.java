@@ -59,10 +59,10 @@ public class MainController {
         drive.setStudentMasterList(studentMasterList);
         Drive drive1 = mainService.saveDrive(drive);
         if (drive1 != null){
-            redirectAttributes.addFlashAttribute("flashMessage", "Drive Successfully Added.");
+            redirectAttributes.addFlashAttribute("flashMessage", "Success");
         }
         else {
-            redirectAttributes.addFlashAttribute("flashMessage", "Filed To Add Drive!");
+            redirectAttributes.addFlashAttribute("flashMessage", "Failed");
         }
         return "redirect:/makeADrive";
     }

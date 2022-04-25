@@ -25,9 +25,18 @@
 <body style="font-family: 'Segoe UI'; margin: 100px">
 <h4>Make A Drive</h4>
 
-<c:if test="${flashMessage ne Empty}">
-    <script>swal("Successful", "${flashMessage}", "success")</script>
-</c:if>
+<c:choose>
+    <c:when test="${flashMessage == 'Success'}">
+        <script>swal("Successful", "Drive Added Successfully.", "success")</script>
+    </c:when>
+
+    <c:when test="${flashMessage == 'Failed'}">
+        <script>swal("Failed", "Failed To Add Drive!", "error")</script>
+    </c:when>
+<%--    <c:otherwise>--%>
+<%--        <script>swal("Oops!", "Something Went Wrong!", "error")</script>--%>
+<%--    </c:otherwise>--%>
+</c:choose>
 
 
 <form id="saveDrive" method="post" action="/saveDrive" modelAttribute="studentMaster">
