@@ -8,4 +8,5 @@ import java.util.List;
 public interface StudentMasterRepository extends JpaRepository<StudentMaster, String> {
 
     List<StudentMaster> findAllByBranch(String branch);
+    StudentMaster getStudentMasterByRegdNo(String regdNo);
 }

@@ -30,4 +30,9 @@ public class MainServiceImpl implements MainService{
     public Drive saveDrive(Drive drive) {
         return driveRepository.save(drive);
     }
+
+    @Override
+    public StudentMaster getStudentByregId(String regId) {
+        return studentMasterRepository.getStudentMasterByRegdNo(regId);
+    }
 }

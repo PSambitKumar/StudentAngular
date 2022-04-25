@@ -7,12 +7,12 @@ import jdk.nashorn.internal.runtime.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,21 +29,42 @@ public class MainController {
         return "makeADrive";
     }
 
-    @GetMapping (value = "/saveDrive")
-    public String saveDrive(Drive drive){
+    @PostMapping (value = "/saveDrive")
+    public String saveDrive(/*@ModelAttribute(value = "studentMaster") Drive drive1, */@RequestParam(value = "companyName", required = false)String companyName,
+                                                                                       @RequestParam(value = "driveDate", required = false)Date driveDate,
+                                                                                       @RequestParam(value = "drivePackage", required = false)Double drivePackage,
+                                                                                       @RequestParam(value = "hrEmail", required = false)String hrEmail,
+                                                                                       @RequestParam(value = "hrMobile",required = false)String hrMobile,
+                                                                                       @RequestParam(value = "companyURL", required = false)String companyURL,
+                                                                                       Drive drive, @RequestParam(value = "regdNo", required = false)List<String> regdNo, RedirectAttributes redirectAttributes){
         System.out.println("Inside Save Drive Method---------------->>");
-//        System.out.println("Data2" + list1);
-        List<StudentMaster> cseStudentList = mainService.getAllCSEStudet("CSE");
-        drive.setDriveDate(new Date());
-        drive.setDrivePackage(400000.00);
-        drive.setCompanyName("CSM Technologies");
-        drive.setCompanyURL("www.csm.tech");
-        drive.setHrEmail("hr.mail@csm.co.in");
-        drive.setHrMobile("90909090");
-        drive.setStudentMasterList(cseStudentList);
-        Drive drive1  = mainService.saveDrive(drive);
-        System.out.println(drive1);
-        return null;
+        List<StudentMaster> studentMasterList = new ArrayList<>();
+        System.out.println("Students RegdNo: " + regdNo);
+        System.out.println(companyName + "," + driveDate + "," + drivePackage + "," + hrEmail + "," + hrMobile + "," + companyURL);
+        drive.setCompanyName(companyName);
+        drive.setDrivePackage(drivePackage);
+        drive.setDriveDate(driveDate);
+        drive.setHrEmail(hrEmail);
+        drive.setHrMobile(hrMobile);
+        drive.setCompanyURL(companyURL);
+        for (String s : regdNo) {
+            StringBuffer stringBuffer = new StringBuffer(s);
+            stringBuffer.deleteCharAt(s.length()-1);
+            System.out.println(stringBuffer);
+            StudentMaster studentMaster = mainService.getStudentByregId(stringBuffer.toString());
+            System.out.println(studentMaster);
+            studentMasterList.add(studentMaster);
+        }
+        System.out.println(studentMasterList);
+        drive.setStudentMasterList(studentMasterList);
+        Drive drive1 = mainService.saveDrive(drive);
+        if (drive1 != null){
+            redirectAttributes.addFlashAttribute("flashMessage", "Drive Successfully Added.");
+        }
+        else {
+            redirectAttributes.addFlashAttribute("flashMessage", "Filed To Add Drive!");
+        }
+        return "redirect:/makeADrive";
     }
 
     @ResponseBody

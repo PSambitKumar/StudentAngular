@@ -9,4 +9,5 @@ public interface MainService {
     List<StudentMaster> getAllStudent();
     List<StudentMaster> getAllCSEStudet(String branch);
     Drive saveDrive(Drive drive);
+    StudentMaster getStudentByregId(String regId);
 }
