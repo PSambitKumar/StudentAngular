@@ -10,12 +10,23 @@ import {Router} from "@angular/router";
 })
 export class CreateEmployeeComponent implements OnInit {
 
+  empId : any;
   employee : Employee = new Employee();
   updateEmployeeData : Employee = new Employee();
 
   constructor(private employeeService : EmployeeService, private router : Router, ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.employeeService.currentMessage.subscribe(data => {
+      this.empId = data;
+      alert("Inside 2nd Component :" + this.empId);
+      console.log("Inside 2nd Component :" + this.empId);
+      // this.employee = JSON.parse(JSON.stringify(data));
+      // console.log("Single Employee List is : " + this.employee);
+    })
+
+    this.updateData();
+
   }
 
   viewEmployeeList(){
@@ -41,8 +52,12 @@ export class CreateEmployeeComponent implements OnInit {
     this.ngOnInit();
   }
 
-  sendData(empId : any){
-
+  updateData() {
+    this.employeeService.getEmployeeById(this.empId).subscribe(data => {
+      alert("Success : " + JSON.stringify(data));
+      console.log(data);
+      this.employee = JSON.parse(JSON.stringify(data));
+    })
   }
 
 }

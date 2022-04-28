@@ -33,6 +33,8 @@ export class EmployeeListComponent implements OnInit {
       console.log(data);
       this.employee = JSON.parse(JSON.stringify(data));
       this.router.navigate(["createEmployee"]);
+      // this.employeeService.exchanegeData(JSON.stringify(data));
+      this.employeeService.exchanegeData(empId);
     },
       error => alert("Error : " + error));
   }
