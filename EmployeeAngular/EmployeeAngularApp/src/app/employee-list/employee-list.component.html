@@ -25,8 +25,8 @@
       <td>{{employee.empEmail}}</td>
       <td>{{employee.empDOB}}</td>
       <td>{{employee.empActive}}</td>
-      <td><button type="button" ng-click="editUser()" class="btn btn-primary custom-width">Edit</button>&nbsp;
-                <button type="button" ng-click="deleteUser()" class="btn btn-danger custom-width">Delete</button></td>
+      <td><button type="button" (click)="editEmployee(employee.empId)" class="btn btn-primary custom-width">Edit</button>&nbsp;
+                <button type="button" (click)="deleteEmployee(employee.empId)" class="btn btn-danger custom-width">Delete</button></td>
     </tr>
     </tbody>
   </table>

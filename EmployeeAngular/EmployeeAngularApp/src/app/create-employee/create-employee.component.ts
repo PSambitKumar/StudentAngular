@@ -11,8 +11,9 @@ import {Router} from "@angular/router";
 export class CreateEmployeeComponent implements OnInit {
 
   employee : Employee = new Employee();
+  updateEmployeeData : Employee = new Employee();
 
-  constructor(private employeeService : EmployeeService, private router : Router) { }
+  constructor(private employeeService : EmployeeService, private router : Router, ) { }
 
   ngOnInit(): void {
   }
@@ -23,16 +24,25 @@ export class CreateEmployeeComponent implements OnInit {
 
   saveEmployee(){
     this.employeeService.createEmployee(this.employee).subscribe(data =>{
-      alert("Success Data : " + data);
+      console.log("Success Data : " + JSON.stringify(data));
+      var x = JSON.parse(JSON.stringify(data));
+      if (x.status == "success"){
+        alert("Inserted");
+      }
     },
-      error => alert("Error Data : " + error));
+      error => console.log("Error Data : " + error));
   }
 
   onSubmitCreateEmployee(){
     const obj = JSON.stringify(this.employee);
-    alert("Data 1 : " + obj);
+    console.log("Data 1 : " + obj);
     this.saveEmployee();
     this.viewEmployeeList();
+    this.ngOnInit();
+  }
+
+  sendData(empId : any){
+
   }
 
 }

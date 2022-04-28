@@ -1,10 +1,14 @@
 package com.sambit.Controller;
 
 import com.sambit.Entity.Employee;
+import com.sambit.Exception.ResourceNotFoundException;
+import com.sambit.Helper.Response;
 import com.sambit.Repository.EmployeeRepository;
+import com.sambit.Util.UserCodeGeneration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +32,43 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "/createEmployee")
-    public Employee createEmployee(@RequestBody Employee employee){
+    public ResponseEntity<Response> createEmployee(@RequestBody Employee employee, Response response){
         System.out.println(employee);
-        return employee;
+        int maxEmpId = 0;
+        String userCode = null;
+        String result = null;
+        try {
+            maxEmpId = employeeRepository.maxSlno();
+            userCode= UserCodeGeneration.UserCodeGenreationMethod(maxEmpId + 1);
+        }catch (Exception e){
+            maxEmpId = 1;
+            userCode= UserCodeGeneration.UserCodeGenreationMethod(maxEmpId);
+        }
+        employee.setEmpUniqueCode(userCode);
+        employee.setEmpActive(true);
+        employee.setEmpType("USER");
+        employee.setEmpLock('N');
+        Employee saveEmployee = employeeRepository.save(employee);
+        if (saveEmployee == employee){
+            response.setStatus("success");
+        }else {
+            response.setStatus("fail");
+        }
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/getEmployeeById/{empId}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("empId")int empId){
+        System.out.println("Employee ID is : " + empId);
+        Employee employee = employeeRepository.findById(empId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee Not Found With this Given EmpId" + empId));
+        return ResponseEntity.ok(employee);
+    }
+
+    @GetMapping(value = "/updateEmployee/{empId}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable("empId")int empId, @RequestBody Employee employee){
+        Employee updateEmployee = new Employee();
+        return ResponseEntity.ok(updateEmployee);
     }
 
 }

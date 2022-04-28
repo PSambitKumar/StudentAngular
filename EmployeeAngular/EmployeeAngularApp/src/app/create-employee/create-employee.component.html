@@ -4,17 +4,17 @@
   <form (ngSubmit)="onSubmitCreateEmployee()">
     <div class="form-group col-md-4">
       <label class="form-label">Full Name</label>
-      <input class="form-control" type="text" id="empFullName" name="empFullName" [(ngModel)]="employee.empFullName" required>
+      <input class="form-control" type="text" id="empFullName" name="empFullName" [value]="employee.empFullName" [(ngModel)]="employee.empFullName" required>
     </div>
 
     <div class="form-group col-md-4">
       <label class="form-label">Email</label>
-      <input class="form-control" type="email" id="empEmail" name="empEmail" [(ngModel)]="employee.empEmail" required>
+      <input class="form-control" type="email" id="empEmail" name="empEmail" [value]="employee.empEmail" [(ngModel)]="employee.empEmail" required>
     </div>
 
     <div class="form-group col-md-4">
       <label class="form-label">DOB</label>
-      <input class="form-control" type="date" id="empDOB" name="empDOB" [(ngModel)]="employee.empDOB" required>
+      <input class="form-control" type="date" id="empDOB" name="empDOB" [value]="employee.empDOB" [(ngModel)]="employee.empDOB" required>
     </div>
 
     <div style="margin-top: 2rem;" class="form-group col-md-4">
