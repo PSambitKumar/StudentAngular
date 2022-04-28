@@ -203,7 +203,7 @@
                                 '</tr>'
 
 
-                            // html = html + '<tr>' +
+                            // html1 = html1 + '<tr>' +
                             //     '<td>'+count+'</td>' +
                             //     '<td><input style="border: none" type="text" name="regdNo" value='+value.regdNo+'/></td>' +
                             //     '<td><input style="border: none" type="text" name="name" value='+value.name+' /></td>' +
@@ -218,7 +218,7 @@
                         html = 'No Data Found, Table Empty!';
                     }
                     $('#tableBody').empty().append(html);
-                    $('#form2').empty().append(html1);
+                    $('#form2').empty().append(html1).hide();
 
                 },
                 error : function (error){

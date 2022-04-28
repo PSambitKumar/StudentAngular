@@ -6,13 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -29,7 +24,13 @@ public class EmployeeController {
     @GetMapping("/getAllEmployeeDetails")
     public List<Employee> getAllEmployee(){
         logger.info("<<-------Inside Get All Employee------->>" );
-        List<Employee> employeeList = employeeRepository.findAll();
-        return employeeList;
+        return employeeRepository.findAll();
     }
+
+    @PostMapping(value = "/createEmployee")
+    public Employee createEmployee(@RequestBody Employee employee){
+        System.out.println(employee);
+        return employee;
+    }
+
 }
