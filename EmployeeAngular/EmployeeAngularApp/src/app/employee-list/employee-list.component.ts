@@ -41,6 +41,18 @@ export class EmployeeListComponent implements OnInit {
 
   deleteEmployee(empId: any){
     console.log(empId);
+    this.employeeService.deleteEmployeeById(empId).subscribe(data => {
+      console.log("Delete Success Data : " + JSON.stringify(data));
+      var resposnseData = JSON.parse(JSON.stringify(data))
+      if (resposnseData.status == "Deleted"){
+        alert("Data Deleted Successfully.")
+      }
+      else {
+        alert("Failed to Delete Data!");
+      }
+      this.ngOnInit();
+    },
+      error => console.log("Delete Error Data : " + error));
   }
 
 }

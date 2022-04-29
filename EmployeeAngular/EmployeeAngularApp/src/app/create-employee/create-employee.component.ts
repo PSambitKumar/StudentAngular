@@ -25,7 +25,6 @@ export class CreateEmployeeComponent implements OnInit {
     })
 
     this.updateData();
-
   }
 
   viewEmployeeList(){
@@ -48,7 +47,6 @@ export class CreateEmployeeComponent implements OnInit {
     console.log("Data 1 : " + obj);
     this.saveEmployee();
     this.viewEmployeeList();
-    this.ngOnInit();
   }
 
   updateData() {
@@ -59,5 +57,6 @@ export class CreateEmployeeComponent implements OnInit {
       // alert("--------------------->" + this.employee.empFullName);
     })
   }
+
 
 }

@@ -71,4 +71,13 @@ public class EmployeeController {
         return ResponseEntity.ok(updateEmployee);
     }
 
+    @GetMapping(value = "/deleteEmployeeById/{empId}")
+    public ResponseEntity<Response> deleteEmpoyeeById(@PathVariable("empId")int empId, Response response){
+        System.out.println(empId);
+        Employee employee = null;
+        employeeRepository.deleteById(empId);
+        response.setStatus("Deleted");
+        return ResponseEntity.ok(response);
+    }
+
 }
