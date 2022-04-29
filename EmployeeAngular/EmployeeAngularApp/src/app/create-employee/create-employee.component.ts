@@ -18,13 +18,14 @@ export class CreateEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.employeeService.currentMessage.subscribe(data => {
-      this.empId = data;
-      console.log("Inside 2nd Component :" + this.empId);
-      // this.employee = JSON.parse(JSON.stringify(data));
-      // console.log("Single Employee List is : " + this.employee);
+      // this.empId = data;
+      // console.log("Inside 2nd Component :" + this.empId);
+      this.employee = JSON.parse(JSON.stringify(data));
+      console.log("Single Employee List is : " + this.employee);
+      alert(this.employee.empFullName);
     })
 
-    this.updateData();
+    // this.updateData();
   }
 
   viewEmployeeList(){
