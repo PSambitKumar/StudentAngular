@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   editEmployee(empId: any){
     console.log(empId);
     this.employeeService.getEmployeeById(empId).subscribe( data =>{
-      alert("Success : " + JSON.stringify(data));
+      // alert("Success : " + JSON.stringify(data));
       console.log(data);
       this.employee = JSON.parse(JSON.stringify(data));
       this.router.navigate(["createEmployee"]);

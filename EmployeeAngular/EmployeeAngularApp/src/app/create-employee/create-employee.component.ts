@@ -19,7 +19,6 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
     this.employeeService.currentMessage.subscribe(data => {
       this.empId = data;
-      alert("Inside 2nd Component :" + this.empId);
       console.log("Inside 2nd Component :" + this.empId);
       // this.employee = JSON.parse(JSON.stringify(data));
       // console.log("Single Employee List is : " + this.employee);
@@ -54,9 +53,10 @@ export class CreateEmployeeComponent implements OnInit {
 
   updateData() {
     this.employeeService.getEmployeeById(this.empId).subscribe(data => {
-      alert("Success : " + JSON.stringify(data));
+      // alert("Success : " + JSON.stringify(data));
       console.log(data);
       this.employee = JSON.parse(JSON.stringify(data));
+      // alert("--------------------->" + this.employee.empFullName);
     })
   }
 

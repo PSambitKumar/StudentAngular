@@ -9,7 +9,7 @@ import {Employee} from "../model/employee";
 export class EmployeeService {
 
   private baseUrl = "http://localhost:8083/myApi/v1";
-  private messageSourse = new BehaviorSubject("Sambit Kumar Pradhan");
+  private messageSourse = new BehaviorSubject("For Exchange of Data");
   currentMessage = this.messageSourse.asObservable();
 
   constructor(private httpClient : HttpClient) { }
