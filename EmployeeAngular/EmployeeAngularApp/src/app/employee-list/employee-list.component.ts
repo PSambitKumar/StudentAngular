@@ -23,6 +23,7 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.getEmployeeDetails().subscribe(data => {
       console.log(data);
       this.employeeList = data;
+      this.employeeList = this.employeeList.filter((element) => element.empLock != 'Y');
     });
   }
 
@@ -33,8 +34,8 @@ export class EmployeeListComponent implements OnInit {
       console.log(data);
       this.employee = JSON.parse(JSON.stringify(data));
       this.router.navigate(["createEmployee"]);
-      this.employeeService.exchanegeData(JSON.stringify(data));
-      // this.employeeService.exchanegeData(empId);
+      // this.employeeService.exchanegeData(JSON.stringify(data)); /*Sending A Single Employee Object*/
+      this.employeeService.exchanegeData(empId); /*Sending Only EmpID of an Employee*/
     },
       error => alert("Error : " + error));
   }

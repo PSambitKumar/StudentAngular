@@ -12,20 +12,21 @@ export class CreateEmployeeComponent implements OnInit {
 
   empId : any;
   employee : Employee = new Employee();
-  updateEmployeeData : Employee = new Employee();
+  formEmployeeData : Employee = new Employee();
 
   constructor(private employeeService : EmployeeService, private router : Router, ) { }
 
   ngOnInit() {
     this.employeeService.currentMessage.subscribe(data => {
-      // this.empId = data;
-      // console.log("Inside 2nd Component :" + this.empId);
-      this.employee = JSON.parse(JSON.stringify(data));
-      console.log("Single Employee List is : " + this.employee);
-      alert(this.employee.empFullName);
+      this.empId = data;
+      console.log("Inside 2nd Component :" + this.empId);
+
+      // this.employee = JSON.parse(JSON.stringify(data));
+      // console.log("Single Employee List is : " + this.employee);
+      // alert(this.employee.empFullName);
     })
 
-    // this.updateData();
+    this.updateData();
   }
 
   viewEmployeeList(){
@@ -44,7 +45,11 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   onSubmitCreateEmployee(){
-    const obj = JSON.stringify(this.employee);
+    const obj = JSON.stringify(this.formEmployeeData);
+    this.employee.empFullName = this.formEmployeeData.empFullName;
+    this.employee.empEmail = this.formEmployeeData.empEmail;
+    this.employee.empDOB = this.formEmployeeData.empDOB;
+
     console.log("Data 1 : " + obj);
     this.saveEmployee();
     this.viewEmployeeList();
@@ -55,6 +60,9 @@ export class CreateEmployeeComponent implements OnInit {
       // alert("Success : " + JSON.stringify(data));
       console.log(data);
       this.employee = JSON.parse(JSON.stringify(data));
+      this.formEmployeeData.empFullName = this.employee.empFullName
+      this.formEmployeeData.empEmail = this.employee.empEmail
+      this.formEmployeeData.empDOB = this.employee.empDOB
       // alert("--------------------->" + this.employee.empFullName);
     })
   }
