@@ -1,4 +1,4 @@
-package com.sambit.productmasterspringboot.Model;
+package com.csm.productmasterspringboot.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

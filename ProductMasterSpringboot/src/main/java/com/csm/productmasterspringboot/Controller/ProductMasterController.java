@@ -1,14 +1,11 @@
-package com.sambit.productmasterspringboot.Controller;
+package com.csm.productmasterspringboot.Controller;
 
-import com.sambit.productmasterspringboot.Model.ProductMaster;
-import com.sambit.productmasterspringboot.Repository.ProductMasterRepository;
+import com.csm.productmasterspringboot.Model.ProductMaster;
+import com.csm.productmasterspringboot.Repository.ProductMasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,15 +22,13 @@ public class ProductMasterController {
     }
 
     @PostMapping(value = "/saveProductMaster")
-    public String saveProductMaster(@RequestParam("pName")String pName,
-            @RequestParam("pDesc")String pDesc,
-            @RequestParam("pId")int pId,
-            @RequestParam("pPrice")int pPrice, Model model){
-        ProductMaster productMaster = new ProductMaster();
-        productMaster.setpId(pId);
-        productMaster.setpName(pName);
-        productMaster.setpDesc(pDesc);
-        productMaster.setpPrice(pPrice);
+    public String saveProductMaster(@ModelAttribute("productMaster")ProductMaster productMaster, Model model){
+//        ProductMaster productMaster = new ProductMaster();
+//        productMaster.setpId(pId);
+//        productMaster.setpName(pName);
+//        productMaster.setpDesc(pDesc);
+//        productMaster.setpPrice(pPrice);
+        System.out.println(productMaster);
         productMasterRepository.save(productMaster);
         List<ProductMaster> productMasterList = productMasterRepository.findAll();
         System.out.println(productMasterList);
