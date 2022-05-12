@@ -130,7 +130,7 @@
 
                 <div class="col-md-4">
                     <label class="form-label" >Select Country<span style="color: red">*</span></label>
-                    <select name="empPermanentAddress.country" id="inputCountry" class="form-control lab" <%--onchange="findStatetByCountryId(this.value)"--%> required="required">
+                    <select name="empPermanentAddress.country" id="inputCountry" class="form-control lab" onchange="findStatetByCountryId(this.value)" required="required">
                         <option value="0">Select</option>
                         <c:forEach items="${countryList}" var="countryList">
                             <option value="${countryList.cid}">${countryList.cname}</option>
@@ -147,8 +147,10 @@
                     <label class="form-label control-label" >Select State<span style="color: red">*</span></label>
                     <select name="empPermanentAddress.state" id="inputState" class="form-control lab" required="required">
                         <option value="0">Select</option>
-                        <c:forEach items="${stateList}" var="stateList">
-                            <option value="${stateList.sid}">${stateList.sname}</option>
+                        <c:forEach items="${stateList}" var="state">
+                            <c:if test="${countryId == state.country.cid}">
+                                <option value="${state.sid}">${state.sname}</option>
+                            </c:if>
                         </c:forEach>
                     </select>
                 </div>
@@ -271,6 +273,15 @@
         });
 
     });
+
+
+</script>
+<script>
+    function findStatetByCountryId(id){
+        console.log(id);
+        ${countryId} = id;
+        console.log(${countryId});
+    }
 </script>
 </body>
 </html>

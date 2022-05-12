@@ -47,6 +47,8 @@ public class MainController {
 
         List<Employee> employeeList = employeeRepository.findAll();
         model.addAttribute("employeeList", employeeList);
+        model.addAttribute("countryId", 0);
+        model.addAttribute("stateId", 0);
         return "employeeManagement";
     }
 
