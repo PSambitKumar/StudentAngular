@@ -30,5 +30,10 @@
     </tr>
     </tbody>
   </table>
+
+  <div (mouseover)="changeText=true" (mouseout)="changeText=false">
+    <span *ngIf="!changeText">Hover Me</span>
+    <div *ngIf="changeText">Hello, Sambit</div>
+  </div>
 </div>
 

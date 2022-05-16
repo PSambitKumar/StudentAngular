@@ -9,11 +9,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
+  changeText: boolean;
 
   employeeList: Employee[] = [];
   employee : Employee = new Employee();
 
-  constructor(private employeeService : EmployeeService, private router : Router) { }
+  constructor(private employeeService : EmployeeService, private router : Router) {
+    this.changeText = false;
+  }
 
   ngOnInit(): void {
     this.getEmployeeData();
