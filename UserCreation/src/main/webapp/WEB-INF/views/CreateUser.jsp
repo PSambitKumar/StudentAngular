@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <%--    Bootstrap for Design--%>
@@ -21,8 +23,34 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap" rel="stylesheet">
     <title>Create User</title>
 </head>
-<body style="background-color: gainsboro; font-family: 'Segoe UI Semibold'">
+<body style="font-family: 'Segoe UI Semibold'">
 <h3 class="text-center">Create New User</h3>
+<form:form action="/createUser" method="post" modelAttribute="userModel">
+    <div class="container" style="margin-top: 2rem">
+        <div class="row ">
 
+            <div class="col-lg-3 col-md-6">
+                <label for="userId" class="form-label">User Id</label>
+                <form:input path="userId" type="text" name="userId" id="userId" class="form-control" minlength="5" />
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <form:input path="password" type="password" name="password" id="password" class="form-control" minlength="8" />
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" minlength="8" required>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <label for="frame" class="form-label">View Image</label></br>
+                <img src="images/default.jpg" id="frame" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+</form:form>
 </body>
 </html>
