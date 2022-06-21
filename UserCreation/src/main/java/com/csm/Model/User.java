@@ -1,11 +1,11 @@
 package com.csm.Model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "userTable")
+@Table(name = "user_table")
 public class User {
 	@Id
 	@Column

@@ -22,35 +22,126 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap" rel="stylesheet">
     <title>Create User</title>
+
+    <style>
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+
+        > .col,
+        > [class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+        }
+
+        .container {
+            padding: 0.5rem;
+        }
+        .cell {
+            min-height: 100px;
+            margin: 1rem;
+        }
+        .cell__big {
+            height: auto;
+            display: flex;
+            height: calc(100% - 2rem);
+        }
+    </style>
 </head>
 <body style="font-family: 'Segoe UI Semibold'">
 <h3 class="text-center">Create New User</h3>
 <form:form action="/createUser" method="post" modelAttribute="userModel">
-    <div class="container" style="margin-top: 2rem">
-        <div class="row ">
 
-            <div class="col-lg-3 col-md-6">
-                <label for="userId" class="form-label">User Id</label>
-                <form:input path="userId" type="text" name="userId" id="userId" class="form-control" minlength="5" />
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-4">
+                <div class="cell">
+                    <label for="userId" class="form-label">User Id</label>
+                    <form:input path="userId" type="text" name="userId" id="userId" class="form-control" minlength="5" />
+                </div>
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <label for="password" class="form-label">Password</label>
-                <form:input path="password" type="password" name="password" id="password" class="form-control" minlength="8" />
+            <div class="col-4">
+                <div class="cell">
+                    <label for="password" class="form-label">Password</label>
+                    <form:input path="password" type="password" name="password" id="password" class="form-control" minlength="8" />
+                </div>
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" minlength="8" required>
+            <div class="col-4">
+                <div class="cell">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" minlength="8" required>
+                </div>
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <label for="frame" class="form-label">View Image</label></br>
-                <img src="images/default.jpg" id="frame" class="img-fluid">
+        </div>
+        <div class="row no-gutters">
+            <div class="col-8">
+                <div class="row no-gutters">
+                    <div class="col-6">
+                        <div class="cell">
+                            <label for="password" class="form-label">Full Name</label>
+                            <form:input path="fullName" type="text" name="fullName" id="fullName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="cell">
+                            <label for="Image" class="form-label">Upload Your Image:</label>
+                            <input class="form-control" type="file" id="Image" onchange="preview()" name="imageData">
+                            <small style="color: orangered">(.jpg/.jpeg/.gif only & Max size 500 KB)</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-6">
+                        <div class="cell">
+                            <label for="password" class="form-label">Email</label>
+                            <form:input path="email" type="email" name="email" id="email" class="form-control"  />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="cell">
+                            <label for="password" class="form-label">Mobile</label>
+                            <form:input path="mobile" type="number" name="mobile" id="mobile" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-6">
+                        <div class="cell">
+                            <label for="password" class="form-label">Date of Birth</label>
+                            <form:input path="dob" type="date" name="dob" id="dob" class="form-control"  />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="cell">
+                            <label for="password" class="form-label">Gender</label>
+                            <form:input path="gender" type="text" name="gender" id="gender" class="form-control" />
+                        </div>
+                    </div>
+                </div>
             </div>
-
+            <div class="col-4">
+                <div class="cell cell__big">
+                    <div class="col-md-12">
+                        <img src="images/default.jpg" id="frame" class="img-fluid" style="height: 10rem; margin-bottom: 10px;"></br>
+                        <label class="form-label">Address</label>
+                        <form:textarea path="address" id="address" class="form-control" rows="5"/>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="col-md-12" style="margin-left: 40rem;">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-warning">Reset</button>
+    </div>
 </form:form>
+
+<script>
+    function preview() {
+        frame.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
 </body>
 </html>
