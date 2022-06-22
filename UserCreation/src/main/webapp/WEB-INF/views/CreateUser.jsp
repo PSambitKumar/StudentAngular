@@ -133,14 +133,20 @@
     </div>
 
     <div class="col-md-12" style="margin-left: 40rem;">
-        <button type="submit" class="btn btn-success">Submit</button>
-        <button type="button" class="btn btn-warning">Reset</button>
+        <button type="button" class="btn btn-success" onclick="submitFoem()">Submit</button>
+        <button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
     </div>
 </form:form>
 
 <script>
     function preview() {
         frame.src = URL.createObjectURL(event.target.files[0]);
+    }
+    function submitFoem(){
+
+    }
+    function resetForm(){
+
     }
 </script>
 </body>
