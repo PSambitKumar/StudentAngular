@@ -51,7 +51,7 @@
 </head>
 <body style="font-family: 'Segoe UI Semibold'">
 <h3 class="text-center">Create New User</h3>
-<form:form action="/createUser" method="post" modelAttribute="userModel">
+<form:form action="/createUser" method="post" modelAttribute="userModel" enctype="multipart/form-data">
 
     <div class="container">
         <div class="row no-gutters">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-6">
                         <div class="cell">
-                            <label for="Image" class="form-label">Upload Your Image:</label>
+                            <label for="Image" class="form-label">Upload Your Image</label>
                             <input class="form-control" type="file" id="Image" onchange="preview()" name="imageData">
                             <small style="color: orangered">(.jpg/.jpeg/.gif only & Max size 500 KB)</small>
                         </div>
@@ -133,7 +133,7 @@
     </div>
 
     <div class="col-md-12" style="margin-left: 40rem;">
-        <button type="button" class="btn btn-success" onclick="submitFoem()">Submit</button>
+        <button type="submit" class="btn btn-success" onclick="submitFoem()">Submit</button>
         <button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
     </div>
 </form:form>
