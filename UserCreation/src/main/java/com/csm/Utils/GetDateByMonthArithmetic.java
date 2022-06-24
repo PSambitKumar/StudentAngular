@@ -3,7 +3,7 @@ package com.csm.Utils;
 import java.sql.Date;
 import java.util.Calendar;
 
-public class GetDateByMonthArithmatic {
+public class GetDateByMonthArithmetic {
 	public static Date getDate(int monthDuration){
 		long millis=System.currentTimeMillis();
 		Date currDate = new Date(millis);

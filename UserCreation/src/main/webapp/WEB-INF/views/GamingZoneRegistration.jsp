@@ -127,7 +127,7 @@
         x = $('#duration').val();
         let subType = $('#subType').val();
         let totalCost = 0;
-        console.log(subType)
+        console.log(subType);
         if (subType == "Standard"){
             totalCost = 1100 * x;
         }else if (subType == "Gold"){
@@ -135,7 +135,7 @@
         }else if (subType == "Diamond"){
             totalCost = 2000 * x;
         }
-        console.log(totalCost)
+        console.log(totalCost);
         $('#totalCost').val(totalCost);
     }
 </script>

@@ -3,7 +3,7 @@ package com.csm.Controller;
 import com.csm.Model.GamingZoneRegistration;
 import com.csm.Repository.GamingZoneRepository;
 import com.csm.Utils.AgeCalculator;
-import com.csm.Utils.GetDateByMonthArithmatic;
+import com.csm.Utils.GetDateByMonthArithmetic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +44,7 @@ public class GamingZoneController {
 		gamingZoneRegistration.setAge(age);
 
 		gamingZoneRegistration.setValidFrom(new Date(System.currentTimeMillis()));
-		gamingZoneRegistration.setExpiredOn(GetDateByMonthArithmatic.getDate(gamingZoneRegistration.getSubDuration()));
+		gamingZoneRegistration.setExpiredOn(GetDateByMonthArithmetic.getDate(gamingZoneRegistration.getSubDuration()));
 
 		System.out.println("Full Data : " + gamingZoneRegistration);
 		gamingZoneRepository.save(gamingZoneRegistration);
