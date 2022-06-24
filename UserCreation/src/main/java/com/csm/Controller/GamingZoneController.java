@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.xml.crypto.Data;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class GamingZoneController {
@@ -65,6 +62,6 @@ public class GamingZoneController {
 		model.addAttribute("gamingZoneRegistration", gamingZoneRegistration);
 		List<GamingZoneRegistration> gamingZoneRegistrationList = gamingZoneRepository.findAll();
 		model.addAttribute("gamingZoneRegistrationList", gamingZoneRegistrationList);
-		return "GamingZoneRegistration";
+		return "redirect:/gamingZoneRegistration";
 	}
 }
