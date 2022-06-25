@@ -62,6 +62,6 @@ public class GamingZoneController {
 		model.addAttribute("gamingZoneRegistration", gamingZoneRegistration);
 		List<GamingZoneRegistration> gamingZoneRegistrationList = gamingZoneRepository.findAll();
 		model.addAttribute("gamingZoneRegistrationList", gamingZoneRegistrationList);
-		return "redirect:/gamingZoneRegistration";
+		return "GamingZoneRegistration";
 	}
 }

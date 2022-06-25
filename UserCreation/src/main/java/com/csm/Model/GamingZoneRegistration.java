@@ -86,23 +86,6 @@ public class GamingZoneRegistration {
 		this.regId = regId;
 	}
 
-	@Override
-	public String toString() {
-		return "GamingZoneRegistration{" +
-			   "regId=" + regId +
-			   ", name='" + name + '\'' +
-			   ", email='" + email + '\'' +
-			   ", mobile='" + mobile + '\'' +
-			   ", dob=" + dob +
-			   ", subType='" + subType + '\'' +
-			   ", subDuration=" + subDuration +
-			   ", totalCost=" + totalCost +
-			   ", age=" + age +
-			   ", validFrom=" + validFrom +
-			   ", expiredOn=" + expiredOn +
-			   '}';
-	}
-
 	public int getAge() {
 		return age;
 	}
@@ -126,5 +109,23 @@ public class GamingZoneRegistration {
 	public void setExpiredOn(Date expiredOn) {
 		this.expiredOn = expiredOn;
 	}
+
+	@Override
+	public String toString() {
+		return "GamingZoneRegistration{" +
+			   "regId=" + regId +
+			   ", name='" + name + '\'' +
+			   ", email='" + email + '\'' +
+			   ", mobile='" + mobile + '\'' +
+			   ", dob=" + dob +
+			   ", subType='" + subType + '\'' +
+			   ", subDuration=" + subDuration +
+			   ", totalCost=" + totalCost +
+			   ", age=" + age +
+			   ", validFrom=" + validFrom +
+			   ", expiredOn=" + expiredOn +
+			   '}';
+	}
+
 
 }
