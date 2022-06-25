@@ -54,13 +54,13 @@
         <div class="col-4">
           <div class="cell">
             <label for="name" class="form-label">Patient's Name</label>
-            <form:input path="name" type="text" id="name" class="form-control" minlength="4" />
+            <form:input path="name" type="text" id="name" class="form-control" minlength="4" onkeyup="checkName(this.value)" />
           </div>
         </div>
         <div class="col-4">
           <div class="cell">
             <label for="age" class="form-label">Age</label>
-            <form:input path="age" type="number" id="age" class="form-control" />
+            <form:input path="age" type="number" id="age" class="form-control" onblur="return checkAge()" />
           </div>
         </div>
         <div class="col-4">
@@ -77,7 +77,7 @@
             <div class="col-6">
               <div class="cell">
                 <label for="apptDate" class="form-label">Appointment Date</label>
-                <input path="apptDate" type="date" name="apptDate" id="apptDate" class="form-control" />
+                <input path="apptDate" type="date" name="apptDate" id="apptDate" class="form-control" onblur="checkDate()" />
               </div>
             </div>
             <div class="col-6">
@@ -120,6 +120,12 @@
                 </tr>
                 </thead>
                 <tbody id="tableBody">
+                <c:forEach items="${tableDataList}" var="e">
+                  <tr style="height: 1rem;">
+                    <td>${e.apptDate}</td>
+                    <td>${e.totalAppt}</td>
+                  </tr>
+                </c:forEach>
                 </tbody>
               </table>
           </div>
@@ -128,11 +134,43 @@
     </div>
 
     <div class="col-md-12" style="margin-left: 40rem;">
-      <button type="submit" class="btn btn-success" onclick="submitFoem()">Submit</button>
+      <button type="submit" class="btn btn-success" onclick="submitForm()">Submit</button>
       <button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
     </div>
   </form:form>
 </fieldset>
 
 </body>
+
+<script>
+function checkName(name){
+  if (name.length() < 4){
+    alert("Name Must be Greater Than 4 Letters!");
+    return false;
+  }
+}
+
+</script>
+
+<script>
+  function checkAge(){
+    let age = $('#age').val();
+    if (age > 100 ){
+      alert("Invalid Age");
+    }else if(age < 8){
+      alert("Invalid Age!");
+    }
+  }
+
+  function checkDate() {
+    var dateString = document.getElementById('id_dateOfBirth').value;
+    var myDate = new Date(dateString);
+    var today = new Date();
+    if ( myDate > today ) {
+      alert("Date Must Be Greater Than today.")
+      return false;
+    }
+    return true;
+  }
+</script>
 </html>

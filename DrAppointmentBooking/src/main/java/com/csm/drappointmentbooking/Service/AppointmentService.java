@@ -8,4 +8,5 @@ import java.util.List;
 public interface AppointmentService {
 	void saveAppointment(Appointment appointment);
 	List<Date> getAllDistinctDate();
+	int totalAppointmentOnDate(Date date);
 }
