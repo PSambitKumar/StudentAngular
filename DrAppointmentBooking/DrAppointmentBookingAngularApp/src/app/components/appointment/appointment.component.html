@@ -1,1 +1,125 @@
-<p>appointment works!</p>
+<fieldset style="margin-left: 2rem; margin-right: 2rem; font-family: 'Segoe UI Semibold'" class="form-group border p-3" >
+  <legend class="w-auto px-2">Appointment Booking</legend>
+  <form (ngSubmit)="bookAppointment()" style="margin-top: 2rem; width: 99%"id="farmerForm">
+    <div class="container">
+
+      <div class="row farmerDetails">
+
+        <div class="col-sm">
+          <div class="col-md-12">
+            <label class="form-label"> Patient's Name</label>
+            <input [(ngModel)]="appointment.name" [ngModelOptions]="{standalone: true}"type="text" class="form-control" maxlength="30" placeholder="Enter Patient's Name" required>
+            <div id="nameAlert" class="custom-alert"></div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <div class="col-md-12">
+            <label class="form-label">Age</label>
+            <input [(ngModel)]="appointment.age" [ngModelOptions]="{standalone: true}" type="number" class="form-control" placeholder="Enter Age" required>
+            <div id="ageAlert" class="custom-alert"></div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <div class="col-md-12">
+            <label for="age" class="form-label">Appointment Date</label>
+            <input [(ngModel)]="appointment.apptDate" [ngModelOptions]="{standalone: true}"  type="date" maxlength="2" class="form-control" id="age" name="age"  required>
+            <div id="dateAlert" class="custom-alert"></div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <div class="col-md-12">
+            <label class="form-label">Gender</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="appointment.gender" [ngModelOptions]="{standalone: true}"  class="form-check-input" type="radio" id="male" name="gender" value="male">
+                <label class="form-check-label" for="male">Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input [(ngModel)]="appointment.gender" [ngModelOptions]="{standalone: true}" class="form-check-input" type="radio"  id="female" name="gender" value="female">
+                <label class="form-check-label" for="female">Female</label>
+              </div>
+              <div id="genderAlert" class="custom-alert"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 2rem;">
+        <div class="col-sm">
+          <div class="col-md-12">
+            <label class="form-label">Email</label>
+            <input [(ngModel)]="appointment.email" [ngModelOptions]="{standalone: true}" type="text"  class="form-control" placeholder="Enter Email" required>
+            <div id="emailAlert" class="custom-alert"></div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <div class="col-md-12">
+            <label class="form-label">Mobile</label>
+            <input [(ngModel)]="appointment.mobile" [ngModelOptions]="{standalone: true}" type="text"  class="form-control"  placeholder="Enter Mobile Number" required>
+            <div id="mobileAlert" class="custom-alert"></div>
+          </div>
+        </div>
+
+        <div class="col-sm" style="float: right">
+          <div class="col-md-12">
+            <table id="appointmentTable" class="table table-striped table-bordered" style="margin-top: 27px;">
+              <thead>
+              <tr>
+                <th>Appointment</th>
+                <th>Booking Status</th>
+              </tr>
+              </thead>
+              <tbody id="tableBody">
+              <tr *ngFor="let appointment of appointmentList; let count = index">
+                <td>{{appointment.apptDate}}</td>
+                <td>{{appointment.totalAppt}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" style="margin-top: 2rem; width: 68%">
+
+        <div class="col-sm">
+          <div class="col-md-12">
+            <label class="form-label">Brief Desc. About Disease</label>
+            <input [(ngModel)]="appointment.descr" [ngModelOptions]="{standalone: true}"  type="textarea" rows="5" class="form-control" placeholder="Enter Desc." required>
+            <div id="accountNumberAlert" class="custom-alert"></div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <div class="col-md-12">
+            <label class="form-label">Patient's Address</label>
+            <input [(ngModel)]="appointment.address" [ngModelOptions]="{standalone: true}"  type="textarea"  rows="5"  class="form-control" placeholder="Enter Address" required>
+            <div id="ifscAlert" class="custom-alert"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div style="margin-top: 2rem;" class="container">
+
+      <div class="row buttonClass">
+
+        <div class="col-sm">
+          <div class="col-md-12">
+            <button id="btnSubmit" class="btn btn-success" type="submit" style="margin-left: 35rem;">Submit</button>
+            <button id="btnReset" class="btn btn-warning" type="reset" style="margin-left: 1rem;">Reset</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </form>
+</fieldset>
